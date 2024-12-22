@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./Website-Clone.css" rel="stylesheet">
+    <title>Qsumare frontend</title>
+    <style>
+        /*! tailwindcss v3.4.6 | MIT License | https://tailwindcss.com*/
+        *,
+        :after,
+        :before {
+            box-sizing: border-box;
+            border: 0 solid #e5e7eb
+        }
+
+        :after,
+        :before {
+            --tw-content: ""
+        }
+
+        :host,
+        html {
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+            -moz-tab-size: 4;
+            -o-tab-size: 4;
+            tab-size: 4;
+            font-family: ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+            font-feature-settings: normal;
+            font-variation-settings: normal;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        body {
+            margin: 0;
+            line-height: inherit
+        }
+
+        hr {
+            height: 0;
+            color: inherit;
+            border-top-width: 1px
+        }
+
+        abbr:where([title]) {
+            -webkit-text-decoration: underline dotted;
+            text-decoration: underline dotted
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        a {
+            color: inherit;
+            text-decoration: inherit
+        }
+
+        b,
+        strong {
+            font-weight: bolder
+        }
+
+        code,
+        kbd,
+        pre,
+        samp {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+            font-feature-settings: normal;
+            font-variation-settings: normal;
+            font-size: 1em
+        }
+
+        small {
+            font-size: 80%
+        }
+
+        sub,
+        sup {
+            font-size: 75%;
+            line-height: 0;
+            position: relative;
+            vertical-align: initial
+        }
+
+        sub {
+            bottom: -.25em
+        }
+
+        sup {
+            top: -.5em
+        }
+
+        table {
+            text-indent: 0;
+            border-color: inherit;
+            border-collapse: collapse
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            font-family: inherit;
+            font-feature-settings: inherit;
+            font-variation-settings: inherit;
+            font-size: 100%;
+            font-weight: inherit;
+            line-height: inherit;
+            letter-spacing: inherit;
+            color: inherit;
+            margin: 0;
+            padding: 0
+        }
+
+        button,
+        select {
+            text-transform: none
+        }
+
+        button,
+        input:where([type=button]),
+        input:where([type=reset]),
+        input:where([type=submit]) {
+            -webkit-appearance: button;
+            background-color: initial;
+            background-image: none
+        }
+
+        :-moz-focusring {
+            outline: auto
+        }
+
+        :-moz-ui-invalid {
+            box-shadow: none
+        }
+
+        progress {
+            vertical-align: initial
+        }
+
+        ::-webkit-inner-spin-button,
+        ::-webkit-outer-spin-button {
+            height: auto
+        }
+
+        [type=search] {
+            -webkit-appearance: textfield;
+            outline-offset: -2px
+        }
+
+        ::-webkit-search-decoration {
+            -webkit-appearance: none
+        }
+
+        ::-webkit-file-upload-button {
+            -webkit-appearance: button;
+            font: inherit
+        }
+
+        summary {
+            display: list-item
+        }
+
+        blockquote,
+        dd,
+        dl,
+        figure,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        hr,
+        p,
+        pre {
+            margin: 0
+        }
+
+        fieldset {
+            margin: 0
+        }
+
+        fieldset,
+        legend {
+            padding: 0
+        }
+
+        menu,
+        ol,
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+
+        dialog {
+            padding: 0
+        }
+
+        textarea {
+            resize: vertical
+        }
+
+        input::-moz-placeholder,
+        textarea::-moz-placeholder {
+            opacity: 1;
+            color: #9ca3af
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            opacity: 1;
+            color: #9ca3af
+        }
+
+        [role=button],
+        button {
+            cursor: pointer
+        }
+
+        :disabled {
+            cursor: default
+        }
+
+        audio,
+        canvas,
+        embed,
+        iframe,
+        img,
+        object,
+        svg,
+        video {
+            display: block;
+            vertical-align: middle
+        }
+
+        img,
+        video {
+            max-width: 100%;
+            height: auto
+        }
+
+        [hidden] {
+            display: none
+        }
+
+        *,
+        ::backdrop,
+        :after,
+        :before {
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-pan-x: ;
+            --tw-pan-y: ;
+            --tw-pinch-zoom: ;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-gradient-from-position: ;
+            --tw-gradient-via-position: ;
+            --tw-gradient-to-position: ;
+            --tw-ordinal: ;
+            --tw-slashed-zero: ;
+            --tw-numeric-figure: ;
+            --tw-numeric-spacing: ;
+            --tw-numeric-fraction: ;
+            --tw-ring-inset: ;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: #3b82f680;
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            --tw-blur: ;
+            --tw-brightness: ;
+            --tw-contrast: ;
+            --tw-grayscale: ;
+            --tw-hue-rotate: ;
+            --tw-invert: ;
+            --tw-saturate: ;
+            --tw-sepia: ;
+            --tw-drop-shadow: ;
+            --tw-backdrop-blur: ;
+            --tw-backdrop-brightness: ;
+            --tw-backdrop-contrast: ;
+            --tw-backdrop-grayscale: ;
+            --tw-backdrop-hue-rotate: ;
+            --tw-backdrop-invert: ;
+            --tw-backdrop-opacity: ;
+            --tw-backdrop-saturate: ;
+            --tw-backdrop-sepia: ;
+            --tw-contain-size: ;
+            --tw-contain-layout: ;
+            --tw-contain-paint: ;
+            --tw-contain-style:
+        }
+
+        .absolute {
+            position: absolute
+        }
+
+        .relative {
+            position: relative
+        }
+
+        .left-0 {
+            left: 0
+        }
+
+        .left-12 {
+            left: 3rem
+        }
+
+        .left-\[30\%\] {
+            left: 30%
+        }
+
+        .right-0 {
+            right: 0
+        }
+
+        .right-20 {
+            right: 5rem
+        }
+
+        .top-56 {
+            top: 14rem
+        }
+
+        .z-20 {
+            z-index: 20
+        }
+
+        .mx-4 {
+            margin-left: 1rem;
+            margin-right: 1rem
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .my-10 {
+            margin-top: 2.5rem;
+            margin-bottom: 2.5rem
+        }
+
+        .my-2 {
+            margin-top: .5rem;
+            margin-bottom: .5rem
+        }
+
+        .my-20 {
+            margin-top: 5rem;
+            margin-bottom: 5rem
+        }
+
+        .my-3 {
+            margin-top: .75rem;
+            margin-bottom: .75rem
+        }
+
+        .my-5 {
+            margin-top: 1.25rem;
+            margin-bottom: 1.25rem
+        }
+
+        .mb-20 {
+            margin-bottom: 5rem
+        }
+
+        .mb-5 {
+            margin-bottom: 1.25rem
+        }
+
+        .mt-1 {
+            margin-top: .25rem
+        }
+
+        .mt-10 {
+            margin-top: 2.5rem
+        }
+
+        .mt-16 {
+            margin-top: 4rem
+        }
+
+        .mt-20 {
+            margin-top: 5rem
+        }
+
+        .mt-28 {
+            margin-top: 7rem
+        }
+
+        .mt-\[300px\] {
+            margin-top: 300px
+        }
+
+        .flex {
+            display: flex
+        }
+
+        .table {
+            display: table
+        }
+
+        .grid {
+            display: grid
+        }
+
+        .h-3 {
+            height: .75rem
+        }
+
+        .h-80 {
+            height: 20rem
+        }
+
+        .h-\[200px\] {
+            height: 200px
+        }
+
+        .h-screen {
+            height: 100vh
+        }
+
+        .w-11\/12 {
+            width: 91.666667%
+        }
+
+        .w-72 {
+            width: 18rem
+        }
+
+        .w-\[300px\] {
+            width: 300px
+        }
+
+        .w-\[70\] {
+            width: 70
+        }
+
+        .w-\[80\%\] {
+            width: 80%
+        }
+
+        .w-\[95\] {
+            width: 95
+        }
+
+        .w-screen {
+            width: 100vw
+        }
+
+        .border-separate {
+            border-collapse: initial
+        }
+
+        .border-spacing-y-2 {
+            --tw-border-spacing-y: 0.5rem;
+            border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y)
+        }
+
+        .translate-y-80 {
+            --tw-translate-y: 20rem;
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+        .cursor-pointer {
+            cursor: pointer
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr))
+        }
+
+        .flex-col {
+            flex-direction: column
+        }
+
+        .flex-wrap {
+            flex-wrap: wrap
+        }
+
+        .items-start {
+            align-items: flex-start
+        }
+
+        .items-center {
+            align-items: center
+        }
+
+        .items-stretch {
+            align-items: stretch
+        }
+
+        .justify-center {
+            justify-content: center
+        }
+
+        .justify-between {
+            justify-content: space-between
+        }
+
+        .justify-around {
+            justify-content: space-around
+        }
+
+        .gap-10 {
+            gap: 2.5rem
+        }
+
+        .gap-12 {
+            gap: 3rem
+        }
+
+        .gap-16 {
+            gap: 4rem
+        }
+
+        .gap-2 {
+            gap: .5rem
+        }
+
+        .gap-20 {
+            gap: 5rem
+        }
+
+        .gap-4 {
+            gap: 1rem
+        }
+
+        .gap-5 {
+            gap: 1.25rem
+        }
+
+        .gap-x-10 {
+            -moz-column-gap: 2.5rem;
+            column-gap: 2.5rem
+        }
+
+        .gap-y-2 {
+            row-gap: .5rem
+        }
+
+        .gap-y-8 {
+            row-gap: 2rem
+        }
+
+        .overflow-x-hidden {
+            overflow-x: hidden
+        }
+
+        .rounded {
+            border-radius: .25rem
+        }
+
+        .rounded-full {
+            border-radius: 9999px
+        }
+
+        .rounded-lg {
+            border-radius: .5rem
+        }
+
+        .rounded-md {
+            border-radius: .375rem
+        }
+
+        .border {
+            border-width: 1px
+        }
+
+        .border-2 {
+            border-width: 2px
+        }
+
+        .border-black {
+            --tw-border-opacity: 1;
+            border-color: rgb(0 0 0/var(--tw-border-opacity))
+        }
+
+        .border-gray-300 {
+            --tw-border-opacity: 1;
+            border-color: rgb(209 213 219/var(--tw-border-opacity))
+        }
+
+        .bg-blue-100 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(219 234 254/var(--tw-bg-opacity))
+        }
+
+        .bg-blue-400 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(96 165 250/var(--tw-bg-opacity))
+        }
+
+        .bg-blue-600 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(37 99 235/var(--tw-bg-opacity))
+        }
+
+        .bg-gray-100 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(243 244 246/var(--tw-bg-opacity))
+        }
+
+        .bg-gray-200 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(229 231 235/var(--tw-bg-opacity))
+        }
+
+        .bg-red-600 {
+            --tw-bg-opacity: 1;
+            background-color: rgb(220 38 38/var(--tw-bg-opacity))
+        }
+
+        .bg-white {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 255 255/var(--tw-bg-opacity))
+        }
+
+        .bg-cover {
+            background-size: cover
+        }
+
+        .bg-center {
+            background-position: 50%
+        }
+
+        .p-10 {
+            padding: 2.5rem
+        }
+
+        .p-2 {
+            padding: .5rem
+        }
+
+        .p-3 {
+            padding: .75rem
+        }
+
+        .p-4 {
+            padding: 1rem
+        }
+
+        .p-5 {
+            padding: 1.25rem
+        }
+
+        .p-6 {
+            padding: 1.5rem
+        }
+
+        .px-10 {
+            padding-left: 2.5rem;
+            padding-right: 2.5rem
+        }
+
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem
+        }
+
+        .px-5 {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem
+        }
+
+        .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem
+        }
+
+        .py-1 {
+            padding-top: .25rem;
+            padding-bottom: .25rem
+        }
+
+        .py-10 {
+            padding-top: 2.5rem;
+            padding-bottom: 2.5rem
+        }
+
+        .py-2 {
+            padding-top: .5rem;
+            padding-bottom: .5rem
+        }
+
+        .py-5 {
+            padding-top: 1.25rem;
+            padding-bottom: 1.25rem
+        }
+
+        .pb-20 {
+            padding-bottom: 5rem
+        }
+
+        .pb-40 {
+            padding-bottom: 10rem
+        }
+
+        .pt-20 {
+            padding-top: 5rem
+        }
+
+        .pt-32 {
+            padding-top: 8rem
+        }
+
+        .text-center {
+            text-align: center
+        }
+
+        .text-justify {
+            text-align: justify
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+            line-height: 2rem
+        }
+
+        .text-3xl {
+            font-size: 1.875rem;
+            line-height: 2.25rem
+        }
+
+        .text-sm {
+            font-size: .875rem;
+            line-height: 1.25rem
+        }
+
+        .text-xl {
+            font-size: 1.25rem;
+            line-height: 1.75rem
+        }
+
+        .font-bold {
+            font-weight: 700
+        }
+
+        .font-semibold {
+            font-weight: 600
+        }
+
+        .tracking-tighter {
+            letter-spacing: -.05em
+        }
+
+        .tracking-wide {
+            letter-spacing: .025em
+        }
+
+        .text-blue-600 {
+            --tw-text-opacity: 1;
+            color: rgb(37 99 235/var(--tw-text-opacity))
+        }
+
+        .text-gray-700 {
+            --tw-text-opacity: 1;
+            color: rgb(55 65 81/var(--tw-text-opacity))
+        }
+
+        .text-white {
+            --tw-text-opacity: 1;
+            color: rgb(255 255 255/var(--tw-text-opacity))
+        }
+
+        .opacity-15 {
+            opacity: .15
+        }
+
+        .opacity-25 {
+            opacity: .25
+        }
+
+        .shadow-2xl {
+            --tw-shadow: 0 25px 50px -12px #00000040;
+            --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color)
+        }
+
+        .shadow-2xl,
+        .shadow-lg {
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .shadow-lg {
+            --tw-shadow: 0 10px 15px -3px #0000001a, 0 4px 6px -4px #0000001a;
+            --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color)
+        }
+
+        .shadow-md {
+            --tw-shadow: 0 4px 6px -1px #0000001a, 0 2px 4px -2px #0000001a;
+            --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color)
+        }
+
+        .shadow-md,
+        .shadow-xl {
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .shadow-xl {
+            --tw-shadow: 0 20px 25px -5px #0000001a, 0 8px 10px -6px #0000001a;
+            --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color)
+        }
+
+        .shadow-blue-300 {
+            --tw-shadow-color: #93c5fd;
+            --tw-shadow: var(--tw-shadow-colored)
+        }
+
+        .shadow-gray-500 {
+            --tw-shadow-color: #6b7280;
+            --tw-shadow: var(--tw-shadow-colored)
+        }
+
+        .blur-3xl {
+            --tw-blur: blur(64px);
+            filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)
+        }
+
+        .focus\:border-transparent:focus {
+            border-color: #0000
+        }
+
+        .focus\:outline-none:focus {
+            outline: 2px solid #0000;
+            outline-offset: 2px
+        }
+
+        .focus\:ring-2:focus {
+            --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+            --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+            box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)
+        }
+
+        .focus\:ring-blue-500:focus {
+            --tw-ring-opacity: 1;
+            --tw-ring-color: rgb(59 130 246/var(--tw-ring-opacity))
+        }
+
+        @media (min-width: 1024px) {
+            .lg\:absolute {
+                position: absolute
+            }
+
+            .lg\:relative {
+                position: relative
+            }
+
+            .lg\:-right-56 {
+                right: -14rem
+            }
+
+            .lg\:z-10 {
+                z-index: 10
+            }
+
+            .lg\:mx-0 {
+                margin-left: 0;
+                margin-right: 0
+            }
+
+            .lg\:mt-0 {
+                margin-top: 0
+            }
+
+            .lg\:mt-72 {
+                margin-top: 18rem
+            }
+
+            .lg\:mt-\[300px\] {
+                margin-top: 300px
+            }
+
+            .lg\:flex {
+                display: flex
+            }
+
+            .lg\:w-11\/12 {
+                width: 91.666667%
+            }
+
+            .lg\:w-\[25\%\] {
+                width: 25%
+            }
+
+            .lg\:w-\[35\%\] {
+                width: 35%
+            }
+
+            .lg\:w-\[40\%\] {
+                width: 40%
+            }
+
+            .lg\:w-\[500px\] {
+                width: 500px
+            }
+
+            .lg\:w-\[60\%\] {
+                width: 60%
+            }
+
+            .lg\:w-\[600px\] {
+                width: 600px
+            }
+
+            .lg\:w-\[65\%\] {
+                width: 65%
+            }
+
+            .lg\:w-fit {
+                width: -moz-fit-content;
+                width: fit-content
+            }
+
+            .lg\:w-full {
+                width: 100%
+            }
+
+            .lg\:grid-cols-4 {
+                grid-template-columns: repeat(4, minmax(0, 1fr))
+            }
+
+            .lg\:flex-wrap {
+                flex-wrap: wrap
+            }
+
+            .lg\:items-center {
+                align-items: center
+            }
+
+            .lg\:gap-16 {
+                gap: 4rem
+            }
+
+            .lg\:gap-2 {
+                gap: .5rem
+            }
+
+            .lg\:p-0 {
+                padding: 0
+            }
+
+            .lg\:p-10 {
+                padding: 2.5rem
+            }
+
+            .lg\:px-10 {
+                padding-left: 2.5rem;
+                padding-right: 2.5rem
+            }
+
+            .lg\:px-24 {
+                padding-left: 6rem;
+                padding-right: 6rem
+            }
+
+            .lg\:px-32 {
+                padding-left: 8rem;
+                padding-right: 8rem
+            }
+
+            .lg\:pr-16 {
+                padding-right: 4rem
+            }
+
+            .lg\:text-center {
+                text-align: center
+            }
+
+            .lg\:text-4xl {
+                font-size: 2.25rem;
+                line-height: 2.5rem
+            }
+        }
+    </style>
+</head>
+
+<body class="w-screen overflow-x-hidden  ">
+    <!-- section 1 -->
+    <div class="max-w-screen mx-auto">
+        <!-- nav bar -->
+        <div class="flex items-center justify-between lg:pr-16 px-4">
+            <img src="./assets/Osumare-Logo.png" width="100">
+            <p class="lg:px-10 px-4 py-1 border-2 text-sm    font-bold border-black rounded-full cursor-pointer">Contact
+                us</p>
+        </div>
+        <div class="bg-cover h-screen relative bg-center pt-32" style="background-image: url(../asset/bg\ image.png);">
+            <div
+                class="flex flex-col lg:items-center  lg:gap-2 gap-4 mt-1 lg:w-fit w-[80%] items-start    mx-auto  relative">
+                <h1 class="lg:text-4xl text-3xl font-semibold">Elevate <span class="text-blue-600 font-bold">Real Estate
+                        Success</span> with</h1>
+                <h1 class="lg:text-4xl text-3xl font-semibold">Osumare's Digital Expertise</h1>
+                <p>Tailored Solutions for Thriving in the Digital Real Estate Landscape</p>
+                <div><button class="py-2 my-3 lg:px-24 px-10 bg-blue-600 text-white rounded-full">Get Started</button>
+                </div>
+                <div
+                    class="  w-[300px] h-[200px] lg:-right-56 absolute   bg-blue-400  blur-3xl opacity-25 rounded-full ">
+                </div>
+            </div>
+            <div class="mt-16 absolute -bottom-50 left-[30%] ">
+                <img src="./assets/Header image.png" width="550">
+            </div>
+        </div>
+    </div>
+    <!-- section 2 -->
+    <div>
+        <div class="h-3 bg-gray-200"></div>
+        <div class="translate-y-80 flex gap-16 flex-col items-center pb-40 lg:mx-0 mx-4">
+            <p class="text-2xl font-bold">Real Estate-Focused Digital Mastery</p>
+            <div class="flex flex-wrap  gap-12 justify-center">
+                <img src="./assets/cuate.png" width="400">
+                <div class="lg:w-[35%]">
+                    <p class="text-2xl my-2 font-bold">Unlock the Potential of Digital Real Estate Excellence </p>
+                    <p class="mb-5 tracking-wide items-stretch">At Osumare, we understand that the real estate landscape
+                        demands a digital presence
+                        that aligns with the intricacies of property marketing. Our range of specialized services is
+                        meticulously designed to catapult your brand's success in the ever-evolving digital property
+                        market.</p>
+                    <div><button class="py-2 my-3 px-10 bg-blue-600 text-white rounded-full">Get Started</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- section 3 -->
+    <div class="mt-[300px] bg-gray-100 pt-20 flex flex-col items-center border gap-2">
+        <p class="text-2xl font-bold">Our Service Offerings</p>
+        <p>Strategies that Drive Property Market Excellence</p>
+        <div class="grid lg:grid-cols-4 grid-cols-2 gap-4 w-11/12 mt-10">
+            <div class="flex flex-col items-center bg-white p-5 gap-2">
+                <div class="bg-gray-200 rounded-full"><img src="./assets/Group 117.png"></div>
+                <p class="font-bold text-center">Automotive SEO</p>
+                <p class="text-center tracking-wide text-sm">Drive Your Success with Automotive SEO: Ignite Online
+                    Visibility and
+                    Outrace the Competition. Accelerate Your Business Growth Today</p>
+            </div>
+            <div class="flex flex-col items-center bg-white p-5 gap-2">
+                <div class="bg-gray-200 rounded-full"><img src="./assets/Group 117 (1).png"></div>
+                <p class="font-bold text-center">PPC Precision</p>
+                <p class="text-center text-sm">Maximize visibility and drive quality traffic with meticulously targeted
+                    Pay-Per-Click campaigns.</p>
+            </div>
+            <div class="flex flex-col items-center bg-white p-5 gap-2">
+                <div class="bg-gray-200 rounded-full"><img src="./assets/Group 117 (2).png"></div>
+                <p class="font-bold text-center">Social Acceleration</p>
+                <p class="text-center text-sm"> Engage and influence your audience across social media platforms,
+                    amplifying your brand's presence and connection.</p>
+            </div>
+            <div class="flex flex-col items-center bg-white p-5 gap-2">
+                <div class="bg-gray-200 rounded-full p-3"><img src="./assets/content.png"></div>
+                <p class="font-bold text-center">Content Excellence</p>
+                <p class="text-center text-sm">Craft compelling, automotive-specific content that resonates with
+                    enthusiasts and drives engagement.</p>
+            </div>
+            <div class="flex flex-col items-center bg-white p-5 gap-2">
+                <div class="bg-gray-200 rounded-full"><img src="./assets/Group 117 (4).png"></div>
+                <p class="font-bold text-center">Web Design</p>
+                <p class="text-center text-sm">Transform visitors into customers with high-performance websites designed
+                    for seamless user experiences and increased conversions.</p>
+            </div>
+            <div class="flex flex-col items-center bg-white p-5 gap-2">
+                <div class="bg-gray-200 rounded-full p-4"><img src="./assets/Data driven (1).png"></div>
+                <p class="font-bold text-center">Data-Driven Insights</p>
+                <p class="text-center text-sm">Leverage data to refine your strategies, making informed decisions that
+                    drive revenue growth.</p>
+            </div>
+            <div class="flex flex-col items-center bg-white p-5 gap-2">
+                <div class="bg-gray-200 rounded-full"><img src="./assets/Group 117 (6).png"></div>
+                <p class="font-bold text-center">End-to-End Solutions</p>
+                <p class="text-center text-sm">Drive Your Success with Automotive SEO: Ignite Online Visibility and
+                    Outrace the Competition. Accelerate Your Business Growth Today</p>
+            </div>
+            <div class="flex flex-col items-center bg-white p-5 gap-2">
+
+                <div class="bg-gray-200 rounded-full"><img src="./assets/Group 117 (7).png"></div>
+                <p class="font-bold text-center">Video marketing</p>
+                <p class="text-center text-sm">From initial awareness to post-purchase loyalty, we offer full-funnel
+                    solutions that guide customers through every step of their journey.</p>
+            </div>
+        </div>
+        <div><button class="py-2 my-10 px-10 bg-blue-600 text-white rounded-full">Get Started</button></div>
+    </div>
+    <!-- section 4 -->
+    <div class="flex flex-col items-center pt-20 gap-y-2  w-11/12 mx-auto ">
+        <h1 class="text-2xl font-bold">Navigating Real Estate's Digital Landscape</h1>
+        <p>Insights for Real Estate Marketing Advantage</p>
+        <div class="   lg:relative w-11/12  mx-auto border-red lg:mt-72 flex gap-10 flex-wrap items-center ">
+            <div class=" flex lg:absolute left-12 lg:z-10  flex-col justify-center gap-5 ">
+                <div class="flex gap-4 border p-4 rounded-lg shadow-md bg-white">
+                    <img src="./assets/Group 116.png">
+                    <div>
+                        <p class="font-bold">Market Trends Analysis</p>
+                        <p>Predictive insights to guide real estate strategies.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 border p-4 rounded-lg shadow-md bg-white">
+                    <img src="./assets/Group 116 (1).png">
+                    <div>
+                        <p class="font-bold">Targeted Buyer Persona</p>
+                        <p>Understand and connect with your ideal property buyers.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 border p-4 rounded-lg shadow-md bg-white">
+                    <img src="./assets/Group 116 (2).png">
+                    <div>
+                        <p class="font-bold">Competitor Insights</p>
+                        <p>Stand out in the property market with informed strategies.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 border p-4 rounded-lg shadow-md bg-white">
+                    <img src="./assets/phone-find-fill.png " height="50" width="50"
+                        class="rounded-full p-2 bg-gray-100">
+                    <div>
+                        <p class="font-bold">Visual Content Appeal</p>
+                        <p>Captivate buyers with appealing visuals and immersive experiences.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:absolute right-20  "><img src="./assets/Frame 892.png" width="500" class=" "></div>
+        </div>
+    </div>
+    <!-- section 5 -->
+    <div class="lg:mt-[300px] mt-20 flex gap-2  flex-col items-center w-11/12 mx-auto">
+        <p class="text-2xl font-bold"> Driving Property Inquiries to Conversions</p>
+        <p>Streamlined Strategies for Real Estate Success</p>
+        <div class="flex flex-wrap gap-x-10 justify-center mt-20 items-center">
+            <img src="./assets/bro.png" width="400">
+
+            <div class="lg:w-[40%] flex flex-col gap-5">
+                <p class="text-2xl font-bold">Optimized Path to Property Purchase</p>
+                <p>In the dynamic realm of real estate, the journey from a property inquiry to a successful conversion
+                    demands a well-crafted approach. At Osumare, we specialize in guiding potential buyers through this
+                    journey seamlessly, maximizing inquiries-turned-conversions with expert strategies.</p>
+                <div><button class="py-2 my-10 px-10 bg-blue-600 text-white rounded-full">Get Started</button></div>
+            </div>
+        </div>
+        <p class="text-2xl font-bold mt-10"> Driving Property Inquiries to Conversions</p>
+    </div>
+    <!-- section 6 -->
+    <div class="flex flex-col items-center">
+        <div class="grid grid-cols-2 gap-20 w-11/12 mx-auto mt-20 ">
+            <div class="flex flex-col items-center gap-4">
+                <img src="./assets/icon.png" width="120">
+                <p class="text-xl text-center font-bold">Call-to-Action Optimization</p>
+                <p class="lg:text-center text-xl">Our carefully crafted CTAs guide potential buyers through the property
+                    journey, enhancing engagement and conversion rates.</p>
+            </div>
+            <div class="flex flex-col items-center gap-4">
+                <img src="./assets/icon (1).png" width="120">
+                <p class="text-xl font-bold text-center">Landing Page Efficiency</p>
+                <p class="lg:text-center text-xl">Tailored landing pages are designed for maximum property lead
+                    conversion. They provide seamless user experiences and clear pathways for inquiry submission.</p>
+            </div>
+            <div class="flex flex-col items-center gap-4">
+                <img src="./assets/icon (2).png" width="120">
+                <p class="text-xl font-bold text-center">Social Proof Utilization</p>
+                <p class="lg:text-center text-xl">Leverage the power of testimonials and success stories from satisfied
+                    buyers to build trust and credibility, encouraging hesitant prospects to take action</p>
+            </div>
+            <div class="flex flex-col items-center gap-4">
+                <img src="./assets/icon (3).png" width="120">
+                <p class="text-xl font-bold text-center">Mobile-Friendly Experience</p>
+                <p class="lg:text-center text-xl">With a responsive design approach, our strategies ensure a seamless
+                    browsing experience across all devices. This responsiveness enhances engagement and conversions by
+                    accommodating the preferences of on-the-go property seekers.</p>
+            </div>
+        </div>
+        <p class="text-2xl font-bold my-20"> Our Expertise in Action</p>
+        <div class="grid grid-cols-2 gap-20 w-11/12 mx-auto mt-20 ">
+            <div class="flex flex-col items-center gap-4">
+                <img src="./assets/icon (4).png" width="120">
+                <p class="text-xl font-bold text-center">Effective CTAs</p>
+                <p class="lg:text-center text-xl"> See how our strategic CTAs drove a significant increase in property
+                    inquiries and accelerated sales for a real estate agency.</p>
+            </div>
+            <div class="flex flex-col items-center gap-4">
+                <img src="./assets/icon (5).png" width="120">
+                <p class="text-xl font-bold text-center">Conversion-Optimized Landing Pages</p>
+                <p class="lg:text-center text-xl">Explore a case study where our landing page optimization increased
+                    property lead conversion rates by 30%</p>
+            </div>
+            <div class="flex flex-col items-center gap-4">
+                <img src="./assets/icon (6).png" width="120">
+                <p class="text-xl font-bold text-center">Trust Building with Social Proof</p>
+                <p class="lg:text-center text-xl">Discover how leveraging client testimonials boosted buyer confidence,
+                    leading to higher conversion rates for a property development project</p>
+            </div>
+            <div class="flex flex-col items-center gap-4">
+                <img src="./assets/icon (7).png" width="120">
+                <p class="text-xl text-center font-bold">Mobile-First Success:</p>
+                <p class="lg:text-center tracking-wide text-justify text-xl"> Learn how our mobile-responsive design
+                    approach resulted in a 25%
+                    increase in inquiries from mobile users for a real estate agency.</p>
+            </div>
+        </div>
+    </div>
+    <!-- section 7 -->
+    <div class="flex flex-col items-center relative">
+        <div class="flex flex-col gap-2 items-center mt-20 lg:w-[500px] ">
+            <p class="font-bold text-2xl">Your Peace of Mind</p>
+            <p class="text-center">Through our conversion-focused strategies, we ensure that property seekers are not
+                just visitors, but engaged prospects ready to make their next move in the real estate market</p>
+            <div><button class="py-2 my-10 px-10 bg-blue-600 text-white rounded-full">Get Started</button></div>
+            <div class="h-80 w-72 absolute border blur-3xl opacity-15 bg-blue-600 left-0"></div>
+            <div class="h-80 w-72 absolute border blur-3xl opacity-15 bg-red-600 right-0"></div>
+        </div>
+        <p class="text-2xl font-bold mt-28">What Our Pharma Partners Say</p>
+        <p>Driving Transformations, One Brand at a Time</p>
+        <div
+            class="lg:flex   justify-center mt-20 items-center lg:p-10 p-5 gap-10  shadow-xl rounded-lg border w-[70] lg:w-[65%]">
+            <img src="./assets/Video.png" width="450">
+            <div class="flex flex-col gap-2 lg:mt-0 mt-10">
+                <div class="flex  items-center justify-between">
+                    <div class="flex gap-2 items-center ">
+                        <div><img src="./assets/Avatar of team.png" width="50"></div>
+                        <p class="font-bold">Tabish khan</p>
+                    </div>
+                    <div><img src="./assets/Symbol.png" width="40" height="40"></div>
+                </div>
+                <p>Osumare's expertise in pharma marketing is unparalleled. Their strategies helped us navigate complex
+                    regulations while driving remarkable growth.</p>
+            </div>
+        </div>
+        <div class="flex  gap-10 mt-10">
+            <img src="./assets/scroll buttion (1).png">
+            <img src="./assets/scroll buttion.png">
+        </div>
+        <p class="text-2xl font-bold mt-28">Frequently Asked Questions</p>
+        <p class="lg:w-[40%] text-center">Pinpoint your audience with precision, ensuring your marketing efforts reach
+            those most likely to engage with your brand.</p>
+        <div class="shadow-2xl mt-20 border   lg:w-[60%] mb-20">
+            <p class="font-bold py-5 px-10 border">
+                3. How does Osumare measure campaign success?
+            </p>
+            <p class="font-bold py-5 px-10 border">3. How does Osumare measure campaign success?</p>
+            <p class="font-bold py-5 px-10   bg-blue-600 text-white shadow-lg shadow-blue-300">3. How does Osumare
+                measure campaign success?</p>
+            <p class="p-10 text-justify tracking-tighter">We believe in measurable results. Our data-driven approach
+                means that every campaign's
+                performance is tracked, analyzed, and refined for optimal outcomes. We provide regular reports that
+                detail key metrics, giving you clear insights into how our strategies are driving growth for your brand.
+            </p>
+        </div>
+    </div>
+    <!-- section 8 -->
+    <div class="flex items-center flex-col gap-y-8 relative pb-20 w-11/12 mx-auto ">
+        <p class="text-2xl font-bold mt-28">Connect with Our Digital Marketing Experts</p>
+        <p class="text-xl lg:w-[600px] lg:text-center">Reach Out for Tailored Strategies and Results-Driven Solutions.
+            Let's Elevate Your Online
+            Presence Together</p>
+        <div class="h-80 w-72 absolute border blur-3xl opacity-15 bg-blue-600 left-0 top-56  "></div>
+        <div class="h-80 w-72 absolute border blur-3xl opacity-15 bg-red-600 right-0 top-56  "></div>
+        <form
+            class="p-6 flex flex-col items-center  bg-white  z-20 rounded-lg shadow-2xl  shadow-gray-500  lg:w-[60%] w-[95]   ">
+            <table class="lg:w-full border-separate border-spacing-y-2 flex flex-wrap justify-center gap-5">
+                <tbody class="  ">
+                    <tr>
+                        <td class="font-bold text-gray-700">Name</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name="name" placeholder="Your Name"
+                                class="  w-[300px] p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="font-bold text-gray-700">Phone</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name="phone" placeholder="Enter your no"
+                                class="  w-[300px]  p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold text-gray-700">Email</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name="email" placeholder="Enter your Email"
+                                class="w-[300px]   p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </td>
+                        <td></td>
+                    </tr>
+                </tbody>
+                <tbody class="">
+                    <tr>
+                        <td class="font-bold text-gray-700">Message</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea placeholder="Your Message"
+                                class=" p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                cols="40" rows="8"></textarea>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="py-2 my-2    lg:px-32 px-10 bg-blue-600 text-white rounded-full ">Get Started</button>
+        </form>
+    </div>
+    <!-- section 9 -->
+    <div class="overflow-x-hidden">
+        <div class="lg:flex lg:flex-wrap justify-around  bg-blue-100 rounded-md lg:w-11/12 mx-auto py-10">
+            <div class="flex flex-col gap-4 lg:p-0 p-5 lg:w-[25%]">
+                <div><img src="./assets/Osumare-Logo.png"></div>
+                <p class="text-sm">The best digital marketing agency in Pune with a proven track record of consistently
+                    delivering quality service.</p>
+                <p class="font-bold">Address</p>
+                <p class="lg:w-[60%]">Survey No. 43, Pathare Thube Nagar, Nagar Road, Kharadi, Pune-14, Maharastra,
+                    India.</p>
+                <p class="font-bold">Contacts</p>
+                <div class="flex"> <img src="./assets/mail-fill.png"> <span>hello@osumare.in</span></div>
+                <div class="flex"><img src="./assets/phone-fill.png"><span>+91 8459 8762 26</span></div>
+            </div>
+            <div class="flex flex-col lg:gap-16 gap-5 px-6">
+                <p class="font-bold text-xl mt-10">Menu</p>
+                <ul>
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Services</li>
+                    <li>Work</li>
+                    <li>Blog</li>
+                    <li>Career</li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-bold text-xl mt-10 p-5">Social</p>
+                <div class="mt-16 px-5 ">
+                    <img src="./assets/Icons.png">
+                </div>
+            </div>
+        </div>
+        <p class="text-center my-5 text-sm">© 2023 Osumare. All rights reserved.</p>
+    </div>
+</body>
+
+</html>
