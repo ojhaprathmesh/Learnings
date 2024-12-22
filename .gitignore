@@ -1,12 +1,26 @@
-*.idea
-*.vscode
-*venv
-*__pycache__
+# IDE and editor directories
+.idea/
+.vscode/
+
+# Python virtual environment
+venv/
+
+# Python cache directories
+__pycache__/ 
+
+# Archive and compressed files
 *.zip
+
+# JetBrains project files
 *.iml
+
+# Document and file formats
 *.txt
 *.exe
 *.pdf
 *.odt
 *.docx
 *.xlsx
+
+# Other folder
+Project Executable/
