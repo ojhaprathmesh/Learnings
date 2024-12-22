@@ -1,0 +1,57 @@
+:root {
+    --shift: 390px
+}
+
+/* Navigation */
+
+#logo img {
+    margin-bottom: 0px;
+    width: 100px;
+    height: 100px;
+}
+
+#home h1,
+#home p {
+    position: relative;
+    top: 200px;
+}
+
+#home .btn {
+    position: relative;
+    top: 300px;
+    font-size: 2.5rem;
+    padding: 10px 20px;
+}
+
+#navbar ul li {
+    list-style: none;
+    font-size: 2rem;
+}
+
+#home p {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+}
+
+/* Service Section */
+
+#service-container {
+    position: relative;
+    top: var(--shift);
+}
+
+#client-section {
+    position: relative;
+    top: var(--shift);
+}
+
+#contact {
+    position: relative;
+    top: var(--shift);
+}
+
+footer {
+    position: relative;
+    top: var(--shift);
+}
