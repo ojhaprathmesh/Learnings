@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create elements using JavaScript</title>
+</head>
+
+<body>
+    <script>
+        let listHeadings = ["Input", "Output", "More Devices"]; // Added an extra heading for demonstration
+        let devices = {
+            "Input": ["Keyboard", "Mouse", "Web-Cam"],
+            "Output": ["Monitor", "Printer", "Speaker"],
+            // You can add more devices for additional headings here
+        };
+
+        let ul = document.createElement("ul");
+        document.body.appendChild(ul);
+
+        listHeadings.forEach(heading => {
+            let li = document.createElement("li");
+            li.textContent = heading;
+            ul.appendChild(li);
+
+            let ol = document.createElement("ol");
+            li.appendChild(ol); // Append the ordered list to the current list item
+
+            // Check if there are devices for the current heading
+            if (devices[heading]) {
+                devices[heading].forEach(device => {
+                    let deviceList = document.createElement("li");
+                    deviceList.textContent = device;
+                    ol.appendChild(deviceList);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

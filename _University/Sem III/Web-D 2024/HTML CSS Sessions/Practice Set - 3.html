@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Set - 3</title>
+    <style>
+        .main {
+            text-align: center;
+            background-color: black;
+            padding: 10px;
+            height: min-content;
+            width: 640px;
+        }
+
+        .top {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: yellow;
+        }
+
+        .bottom {
+            display: flex;
+            background-color: orange;
+        }
+
+        /* .bottom > div {
+            width: 400px;
+        } */
+
+        .box {
+            color: red;
+            background-color: blue;
+            width: 64px;
+            height: 64px;
+            padding: 5px;
+            margin: 10px;
+            align-content: center;
+        }
+
+        .left {
+            background-color: aqua;
+            width: 200px;
+        }
+
+        .right {
+            display: flex;
+            background-color: chartreuse;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .right>div {
+            display: flex;
+        }
+
+        .right-1 {
+            flex-direction: row-reverse;
+            background-color: blanchedalmond;
+        }
+
+        .right-2 {
+            width: 100%;
+            background-color: orange;
+            flex-wrap: wrap;
+        }
+
+        .right-2 .box {
+            width: 100%;
+            height: 240px;
+            max-height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="top">
+            <div class="box">1</div>
+            <div class="box">2</div>
+            <div class="box">3</div>
+            <div class="box">4</div>
+            <div class="box">5</div>
+            <div class="box">6</div>
+            <div class="box">7</div>
+            <div class="box">8</div>
+            <div class="box">9</div>
+            <div class="box">10</div>
+        </div>
+        <div class="bottom">
+            <div class="left">
+                <div class="box">1</div>
+                <div class="box">2</div>
+                <div class="box">3</div>
+                <div class="box">4</div>
+            </div>
+            <div class="right">
+                <div class="right-1">
+                    <div class="box">1</div>
+                    <div class="box">2</div>
+                    <div class="box">3</div>
+                </div>
+                <div class="right-2">
+                    <div class="box"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change class using JavaScript</title>
+    <style>
+        #box-1 {
+            width: 100px;
+            height: 100px;
+            border: 2px solid;
+            margin: 10px;
+            display: flex; /* Use Flexbox */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            color: black;
+            font-size: larger;
+            text-align: center;
+        }
+
+        .c1 {
+            background-color: yellow;
+        }
+
+        .c2 {
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box-1" class="c1">BML Munjal University</div>
+    <div class="btnPanel">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+    </div>
+    <script>
+        let div = document.getElementById("box-1");
+        let intervalId = null;
+
+        document.getElementById("start").addEventListener("click", startTimer);
+        document.getElementById("stop").addEventListener("click", stopTimer);
+
+        function startTimer() {
+            if (intervalId == null) {
+                intervalId = setInterval(animation, 500);
+            }
+        }
+
+        function stopTimer() {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+
+        function animation() {
+            if (div.className === "c1") {
+                div.innerHTML = "SOET";
+                div.className = "c2";
+            } else {
+                div.innerHTML = "BML";
+                div.className = "c1";
+            }
+        }
+    </script>
+</body>
+
+</html>

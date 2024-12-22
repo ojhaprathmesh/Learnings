@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selectors</title>
+    <style>
+        div p:first-child {
+            font-weight: bold;
+            font-size: xx-large;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        div p:nth-child(2n+3) {
+            color: blue;
+        }
+
+        div p:last-child {
+            font-size: larger;
+            font-style: italic;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .changes {
+            font-size: 20px;
+            font-style: italic;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: blue;
+        }
+
+        .button-container {
+            margin-top: 10px;
+        }
+        
+        .remove-button {
+            border-radius: 10px;
+            padding: 4px 10px;
+            background-color: cyan;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Esse quaerat sed veritatis obcaecati,
+                consequuntur odit dolor pariatur amet laboriosam vitae?
+            </p>
+            <p>
+                Hi this is second para.
+            </p>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam expedita unde aliquid tempora
+                dignissimos, fugiat facilis eveniet dolor quam veritatis, nemo provident architecto molestiae animi
+                delectus! Placeat officiis sed sequi?
+            </p>
+        </div>
+
+        <div>
+            <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur deserunt dolore cupiditate iure
+                nostrum similique fugit laudantium, beatae rem eligendi minima voluptas consectetur sint modi illo
+                voluptates recusandae ad reprehenderit.
+            </p>
+            <p>
+                Hi this is second para in second division.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia sit non saepe exercitationem
+                laudantium similique harum, iure, optio asperiores suscipit eligendi cumque minima, dolorem adipisci
+                voluptatem est corporis architecto? Corporis.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

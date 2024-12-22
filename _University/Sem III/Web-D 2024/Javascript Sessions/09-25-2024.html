@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            text-align: center;
+            font-size: 40px;
+        }
+
+        .btnPanel {
+            padding: 10px;
+            background-color: blue;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .btnPanel>button {
+            color: aliceblue;
+            background-color: blueviolet;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="btnPanel">
+        <button id="btn-1" onclick="changeBackgroundColorByOnClick()">Change Background Color By OnClick</button>
+        <button id="btn-2">Change Background Color By Id</button>
+        <button class="btn-3" onclick="changeBackgroundColorByClass()">Change Background Color By Class</button>
+        <button class="btn-4">Change Background Color(Class)</button>
+        <button class="btn-5">Change Background Color(Class)</button>
+    </div>
+
+    This Is Some Text
+    <script>
+        let bodyBtn = document.body;
+
+        let isChanged = false;
+
+        function changeBackgroundColorByOnClick() {
+            if (isChanged) {
+                bodyBtn.style.backgroundColor = "white";
+            } else {
+                bodyBtn.style.backgroundColor = "turquoise";
+            }
+            isChanged = !isChanged;
+        }
+
+        function changeBackgroundColorById() {
+            if (isChanged) {
+                bodyBtn.style.backgroundColor = "white";
+            } else {
+                bodyBtn.style.backgroundColor = "beige";
+            }
+            isChanged = !isChanged;
+        }
+
+        function changeBackgroundColorByClass() {
+            if (isChanged) {
+                bodyBtn.style.color = "black";
+            } else {
+                bodyBtn.style.color = "hotpink";
+            }
+            isChanged = !isChanged;
+        }
+
+        document.getElementById("btn-2").addEventListener("click", changeBackgroundColorById); // Event listener
+
+        document.querySelector(".btn-4").addEventListener("click", () => {
+
+        }); // Event listener with Query Selector with Big Fat Arrow function
+    </script>
+</body>
+
+</html>

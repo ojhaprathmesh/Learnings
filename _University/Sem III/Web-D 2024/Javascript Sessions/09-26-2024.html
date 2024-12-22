@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes</title>
+</head>
+
+<body>
+    <script>
+        class Student {
+            static roll = 0;
+            constructor(name, m1, m2, m3) {
+                this.name = name;
+                this.m1 = m1;
+                this.m2 = m2;
+                this.m3 = m3;
+                this.roll = Student.roll + 1;
+            }
+
+            print() {
+                console.log("Name: " + this.name);
+                console.log("Marks-1: " + this.m1);
+                console.log("Marks-2: " + this.m2);
+                console.log("Marks-3: " + this.m3);
+
+                this.isfail();
+            }
+
+            percentage() {
+                let percentage = (this.m1 + this.m2 + this.m3) / 3;
+                console.log("Percentage: " + percentage);
+            }
+
+            isfail() {
+                if (this.percentage() >= 40) {
+                    console.log("Pass");
+                } else {
+                    console.log("Fail");
+                }
+            }
+        }
+
+        let obj1 = new Student("Prathmesh Ojha", 90, 87, 65);
+        let obj2 = new Student("Jhankar Bansal", 91, 82, 66);
+        let obj3 = new Student("Aastha Thakur", 93, 83, 67);
+        let obj4 = new Student("Sourav Singh", 95, 84, 68);
+
+        let objArray = [obj1, obj2, obj3, obj4];
+
+        for (let element of objArray) {
+            console.log(element.percentage());
+        }
+    </script>
+</body>
+
+</html>

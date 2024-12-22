@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Set - 4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            border: 2px dashed black ;
+            height: 20rem;
+            margin: 0 auto;
+            width: 60rem;
+        }
+
+        .heading {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 10px;
+            /* padding: 0 10px; */
+            text-align: center;
+        }
+
+        .body {
+            background-color: black;
+            color: blue;
+            padding: 5px;
+        }
+
+        .form {
+            background-color: rgb(218, 165, 32);
+            width: 100%;
+        }
+
+        td {
+            padding: 5px;
+            background-color: rgb(210, 105, 30);
+        }
+
+        .label {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="heading">
+            Registration Form
+        </div>
+        <div class="body">
+            <table class="form" cellspacing="6">
+                <tr>
+                    <td class="label" style="background-color: #ffe4c4;">
+                        <label for="username">Student Name:</label>
+                    </td>
+                    <td class="content">
+                        <input type="text" id="username" placeholder="Enter your name" autofocus>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label" style="background-color: #d436aa;">
+                        <label for="rollno">Roll No:</label>
+                    </td>
+                    <td class="content">
+                        <input type="number" id="rollno">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        <label for="contact">Contact No:</label>
+                    </td>
+                    <td class="content">
+                        <input type="tel" id="contact">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        <label for="marks">Marks:</label>
+                    </td>
+                    <td class="content">
+                        <input type="number" id="marks">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        <label>Select your gender:</label>
+                    </td>
+                    <td class="content">
+                        <input type="radio" name="gender" id="male" value="male">
+                        <label for="male">Male</label>
+                        <input type="radio" name="gender" id="female" value="female">
+                        <label for="female">Female</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        <label for="qualification">Select you qualification:</label>
+                    </td>
+                    <td class="content">
+                        <input type="checkbox" id="ug">
+                        <label for="ug">Undergraduate</label>
+                        <input type="checkbox" id="pg">
+                        <label for="pg">Postgraduate</label>
+                        <input type="checkbox" id="phd">
+                        <label for="phd">Ph.D</label>
+                        <input type="checkbox" id="diploma">
+                        <label for="diploma">Diploma</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        <label for="interests">Select what interests you most:</label>
+                    </td>
+                    <td class="content">
+                        <select id="interests" size="4">
+                            <option value="read">Reading</option>
+                            <option value="surf">Surfing</option>
+                            <option value="ski">Skiing</option>
+                            <option value="skate" selected>Skating</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">
+                        <label for="comment">Comment:</label>
+                    </td>
+                    <td class="content">
+                        <textarea id="comment" cols="30" rows="10"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

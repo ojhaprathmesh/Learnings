@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Practice Session</title>
+</head>
+
+<body>
+    <div class="exercise"></div>
+
+    <div class="button-container">
+        <button class="remove-button">Remove Item</button>
+    </div>
+
+    <script>
+        class ListManager {
+            constructor(array, containerSelector) {
+                this.array = array;
+                this.container = document.querySelector(containerSelector);
+                this.ol = document.createElement("ol");
+                this.ol.classList.add("changes");
+                this.container.appendChild(this.ol);
+                this.displayList();
+
+                document.querySelector(".remove-button").addEventListener("click", () => this.removeItem());
+            }
+
+            displayList() {
+                this.ol.innerHTML = "";
+                this.array.forEach((item, index) => {
+                    let li = document.createElement("li");
+                    li.textContent = `${item}`;
+                    this.ol.appendChild(li);
+                });
+            }
+
+            addItem(item) {
+                this.array.push(item);
+                this.displayList();
+            }
+
+            removeItem() {
+                let itemNumber = prompt("Enter the item number to remove:");
+                let index = parseInt(itemNumber) - 1;
+                if (index >= 0 && index < this.array.length) {
+                    this.array.splice(index, 1);
+                    this.displayList();
+                } else {
+                    alert("Invalid item number!");
+                }
+            }
+
+            init() {
+                let itemCount = prompt("How many items do you want to add?");
+                itemCount = parseInt(itemCount);
+
+                if (isNaN(itemCount) || itemCount <= 0) {
+                    alert("Please enter a valid number of items.");
+                    return;
+                }
+
+                for (let i = 0; i < itemCount; i++) {
+                    let newItem = prompt(`Enter item ${i + 1}:`);
+                    if (newItem) {
+                        this.addItem(newItem);
+                    } else {
+                        alert("Item cannot be empty!");
+                        i--;
+                    }
+                }
+            }
+        }
+
+        const initialItems = [];
+
+        let listManager = new ListManager(initialItems, ".exercise");
+        listManager.init();
+    </script>
+</body>
+
+</html>

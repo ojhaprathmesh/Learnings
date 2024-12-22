@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* .text-center {
+            text-align: center;
+        } */
+    </style>
+</head>
+
+<body>
+    <script>
+        let header = document.createElement("header");
+        document.body.appendChild(header);
+
+        let section = document.createElement("section");
+        document.body.appendChild(section);
+
+        async function loadJSONBMLPage() {
+            try {
+                // Create request object
+                let request = new Request("./json/bmu.json");
+
+                // Fetch response
+                let response = await fetch(request);
+
+                // Check if the request was successful
+                if (!response.ok) {
+                    throw new Error("Network response was not ok " + response.statusText);
+                }
+
+                // Get JSON object using response
+                let jsonObj = await response.json();
+
+                updateHeader(jsonObj);
+                updateSection(jsonObj);
+            } catch (error) {
+                console.error("There was a problem with the fetch operation:", error);
+            }
+        }
+
+        function updateHeader(jsonObject) {
+            let bmuImage = document.createElement("img");
+            bmuImage.src = jsonObject["image"];
+            bmuImage.width = "450"
+            bmuImage.style.display = "block";
+            bmuImage.style.margin = "0 auto";
+            header.appendChild(bmuImage);
+
+            let schoolHeading = document.createElement("h2");
+            schoolHeading.textContent = jsonObject["school"];
+            schoolHeading.style.textAlign = "center";
+            // schoolHeading.classList.add("text-center");
+            header.appendChild(schoolHeading);
+
+            let uniHeading = document.createElement("h1");
+            uniHeading.textContent = `${jsonObject["university"]}, ${jsonObject["place"]}`;
+            uniHeading.style.textAlign = "center";
+            // uniHeading.classList.add("text-center");
+            header.appendChild(uniHeading);
+        }
+
+        function updateSection(jsonObject) {
+            jsonObject["departments"].forEach(department => {
+                section.style.display = "flex";
+                section.style.justifyContent = "space-evenly";
+                
+                let article = document.createElement("article");
+                
+                let contentList = document.createElement("ul");
+                contentList.style.listStyle = "none";
+                
+                let departmentKeys = Object.keys(department);
+                
+                departmentKeys.forEach(key => {
+                    let detail = document.createElement("li");
+                    // let capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
+                    // detail.textContent = `${capitalizedKey}: ${department[key]}`;
+                    console.log(department[key].length)
+                    contentList.appendChild(detail);
+                });
+                
+                article.append(contentList);
+                section.appendChild(article);
+            });
+        }
+
+        loadJSONBMLPage();
+    </script>
+</body>
+
+</html>

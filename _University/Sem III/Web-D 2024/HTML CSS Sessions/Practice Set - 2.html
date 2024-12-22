@@ -1,0 +1,118 @@
+<!-- Create a html document to have a table. The number of rows in table depends upon the registration form. This registration form must have text box for textual and numeric data. The form must use radios and checkboxes. There should be a one large text box to enter the comments. Also the form must have a dropdown list. All the labels must be in same font color but there shall be different background color and different formatting in terms of bold or italic. Design  this document by incorporating the following:
+ Inline Style
+ Style Element Selector (Hint: Using tag name in the style tag) 
+ Class Selector-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Set - 2</title>
+    <style>
+        body table {
+            width: 64rem;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+        }
+
+        .form {
+            background-color: yellow;
+            color: blue;
+            font-size: 20px;
+            /* font-style: italic; */
+        }
+
+        .detail {
+            color: orangered;
+            font-weight: bold;
+        }
+
+        #heading {
+            display: block;
+            text-decoration: underline;
+            margin-bottom: 10px;
+            font-size: 32px;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <table border="4" cellspacing="0" class="form">
+        <caption>
+            <strong id="heading">
+                Form | Apply for Smart India Hackathon
+            </strong>
+        </caption>
+        <form action="post">
+            <tr align="left">
+                <td class="detail">
+                    <label for="username">Student Name</label>
+                </td>
+                <td align="center">
+                    <input type="text" name="username" id="username" placeholder="Enter your username" autofocus>
+                </td>
+            </tr>
+            <tr align="left">
+                <td class="detail">
+                    <label for="phone">Contact Number</label>
+                </td>
+                <td align="center">
+                    <input type="tel" id="phone" name="phone" placeholder="123-456-7890">
+                </td>
+            </tr>
+            <tr align="left">
+                <td class="detail">
+                    Gender
+                </td>
+                <td align="center">
+                    <input type="radio" name="gender" id="male" value="male">
+                    <label for="male">Male</label>
+                    <input type="radio" name="gender" id="female" value="female">
+                    <label for="female">Female</label>
+                </td class="detail">
+            </tr>
+            <tr align="left">
+                <td class="detail">
+                    Skills
+                </td>
+                <td align="center">
+                    <input type="checkbox" id="front" name="undergraduate">
+                    <label for="front">Front-End</label>
+                    <input type="checkbox" id="back" name="diploma">
+                    <label for="back">Back-End</label>
+                    <input type="checkbox" id="full" name="postgraduate">
+                    <label for="full">Full-Stack</label>
+                    <input type="checkbox" id="ml" name="doctrate">
+                    <label for="ml">Machine-Learning</label>
+                </td>
+            </tr>
+            <tr align="left">
+                <td class="detail">
+                    <label for="comment">Enter Your Comment</label>
+                </td>
+                <br>
+                <td>
+                    <textarea name="comment" id="comment" cols="30" rows="10"></textarea>
+                </td>
+            </tr>
+            <tr align="left">
+                <td class="detail">
+                    Course
+                </td>
+                <td align="center">
+                    <select name="courses">
+                        <option value="CSE">Computer Science</option>
+                        <option value="ME">Mechanical</option>
+                        <option value="ECOM" selected>ECOM</option>
+                    </select>
+                </td>
+            </tr>
+        </form>
+    </table>
+</body>
+
+</html>
+
+<!-- Date: 14 Aug 2024 -->

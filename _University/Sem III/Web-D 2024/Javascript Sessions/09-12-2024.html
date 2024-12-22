@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Session - 1</title>
+    <style>
+        * {
+            margin: 0;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            padding: 0;
+        }
+
+        #hid {
+            display: flex;
+            background-color: green;
+            color: brown;
+            padding: 5px;
+            height: 2.5rem;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        #boxPanel {
+            display: none;
+            justify-content: space-evenly;
+            background-color: grey;
+            flex-wrap: wrap;
+            /* To allow the boxes to wrap to the next line if needed */
+            padding: 20px;
+            /* Add some padding around the box panel */
+        }
+
+        .box {
+            border: 1px solid black;
+            border-radius: 4px;
+            height: 50px;
+            width: 50px;
+            margin: 20px auto;
+            opacity: 0; /* Initially hidden */
+            transform: scale(0); /* Initially scaled down */
+            transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition for appearance */
+        }
+
+        .visible {
+            opacity: 1; /* Visible */
+            transform: scale(1); /* Original size */
+        }
+
+        #buttonPanel {
+            display: flex;
+            justify-content: space-evenly;
+            background-color: rgb(0, 200, 255);
+        }
+
+        button {
+            background-color: red;
+            border: 1px solid black;
+            border-radius: 4px;
+            color: yellow;
+            margin: 20px;
+            padding: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="hid">BML Munjal University</h1>
+    <div id="boxPanel">
+        <!-- Boxes will be created here -->
+    </div>
+    <div id="buttonPanel">
+        <button onclick="changeColors()">Change Color</button>
+        <button onclick="changeText()">Change Text</button>
+        <button onclick="createBoxes()">Create Boxes</button>
+        <button onclick="zoomIn()">Zoom In</button>
+        <button onclick="zoomOut()">Zoom Out</button>
+    </div>
+
+    <script>
+        let btn = document.getElementById("hid");
+
+        function changeColors() {
+            btn.style.backgroundColor = "yellow";
+            btn.style.color = "blue";
+        }
+
+        function changeText() {
+            btn.style.fontFamily = "'Times New Roman', Times, serif";
+        }
+
+        function createBoxes() {
+            let boxPanel = document.getElementById("boxPanel");
+            boxPanel.style.display = "flex";
+            boxPanel.innerHTML = "";
+
+            for (let i = 0; i < 4; i++) {
+                let newBox = document.createElement("div");
+                newBox.className = "box";
+                newBox.style.backgroundColor = "blue";
+                boxPanel.appendChild(newBox);
+
+                // Trigger the transition with a slight delay
+                setTimeout(() => {
+                    newBox.classList.add("visible");
+                }, 100 * i); // Delays the appearance of each box by 50ms more than the previous
+            }
+        }
+
+        function zoomIn() {
+            let boxes = document.getElementsByClassName("box");
+            for (let i = 0; i < boxes.length; i++) {
+                boxes[i].style.transform = "scale(2)";
+            }
+        }
+        
+        function zoomOut() {
+            let boxes = document.getElementsByClassName("box");
+            for (let i = 0; i < boxes.length; i++) {
+                boxes[i].style.transform = "scale(1)";
+            }
+        }
+    </script>
+</body>
+
+</html>

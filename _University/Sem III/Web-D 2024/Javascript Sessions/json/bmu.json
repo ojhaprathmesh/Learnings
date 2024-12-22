@@ -1,0 +1,38 @@
+{
+    "image": "./images/bmu.jpg",
+    "school": "School of Engineering & Technology",
+    "university": "BML Munjal University",
+    "place": "Gurugram",
+    "departments": [
+        {
+            "dept_name": "Computer Science",
+            "theme": "Hardware & Software",
+            "eligibility": "Open to all",
+            "electives": [
+                "IOT",
+                "ADS",
+                "Blockchain"
+            ]
+        },
+        {
+            "dept_name": "Mechanical Engineering",
+            "theme": "Hardware & Software",
+            "eligibility": "Open to all",
+            "electives": [
+                "IOT",
+                "Fluid Mechanics",
+                "Robotics"
+            ]
+        },
+        {
+            "dept_name": "Electronics & Computer Science",
+            "theme": "Hardware & Software",
+            "eligibility": "Open to all",
+            "electives": [
+                "IOT",
+                "Control Systems",
+                "VLSI"
+            ]
+        }
+    ]
+}

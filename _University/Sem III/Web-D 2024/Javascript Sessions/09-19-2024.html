@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #heading {
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: chartreuse;
+            font-family: Georgia;
+            min-height: 40px;
+        }
+
+        #hiddenPara {
+            display: none;
+            padding: 5px;
+            font-size: 20px;
+            color: rgb(255, 179, 0);
+            background-color: purple;
+        }
+
+        .btnPanel {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            background-color: aquamarine;
+            border: 1px solid;
+        }
+
+        .btnPanel button {
+            padding: 5px;
+            border: 2px solid grey;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1 id="heading"> This is a Javascript Session.</h1>
+        <p id="hiddenPara"></p>
+        <div class="btnPanel">
+            <button id="changeStyle" onclick="changeStyle()">Change Style</button>
+            <button id="showText" onclick="showDescription()">Show description</button>
+        </div>
+    </div>
+    <script>
+        let btn = document.getElementById("heading");
+        let para = document.getElementById("hiddenPara");
+        let isChanged = false;
+        let isHidden = true;
+
+        function changeStyle() {
+            if (isChanged) {
+                btn.style.color = "black";
+                btn.style.backgroundColor = "chartreuse";
+                btn.style.fontFamily = "Georgia";
+            } else {
+                btn.style.color = "grey";
+                btn.style.backgroundColor = "";
+                btn.style.fontFamily = "Arial";
+            }
+            isChanged = !isChanged;
+        }
+
+        function showDescription() {
+            if (isHidden) {
+                para.style.display = "block";
+                para.innerHTML = "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe eligendi minus maxime nobis pariatur, ducimus inventore neque, velit iure, ipsum nesciunt dignissimos cum deleniti voluptatem. Tempora aliquid in a necessitatibus, vel laudantium aut quam labore, veniam, impedit modi placeat veritatis officia quo debitis illo aperiam mollitia deserunt? Ex, consequatur ea!";
+            } else {
+                para.style.display = "none";
+                para.innerHTML = "";
+            }
+            isHidden = !isHidden;
+        }
+    </script>
+</body>
+
+</html>
