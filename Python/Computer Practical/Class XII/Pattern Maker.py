@@ -1,0 +1,10 @@
+nList = []
+
+for i in range(2, 7):
+    for j in range(1, len(nList) + i):
+        if j in nList:
+            continue
+        print('#', end=' ')
+        if j not in nList:
+            nList.append(j)
+    print()
