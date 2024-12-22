@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Chat Interface</title>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1>GPT-3.5</h1>
+                <button id="new-chat-button">New Chat</button>
+                <button id="close-sidebar-button">Close Sidebar</button>
+            </div>
+            <div class="chat-list">
+                <!-- List of all chats goes here -->
+                <div class="chat-day">
+                    <h2>Today</h2>
+                    <!-- List of chats for today goes here -->
+                </div>
+            </div>
+        </div>
+        <div class="chat-section">
+            <div class="chat-header">
+                <h1>GPT-3.5</h1>
+                <button id="share-chat-button">Share Chat</button>
+            </div>
+            <div class="current-chat">
+                <div class="chat-text-area">
+                    <!-- Current chat messages go here -->
+                </div>
+                <div class="chat-input-area">
+                    <textarea id="input-box" placeholder="Type your message..."></textarea>
+                    <button id="send-button">Send</button>
+                </div>
+            </div>
+            <div class="output-text-area">
+                <textarea id="output-box" readonly></textarea>
+                <button id="copy-output-button">Copy Output</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
