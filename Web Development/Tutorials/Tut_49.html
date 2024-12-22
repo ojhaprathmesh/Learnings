@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strings And String Methods | Javascript</title>
+</head>
+<body>
+    <div class="container">
+        <h1>This Is A Heading</h1>
+        <div id="content"></div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur delectus animi expedita maiores culpa perspiciatis. Necessitatibus vel velit culpa laboriosam reiciendis? Suscipit, totam. Repudiandae ea ipsa nobis voluptates quaerat aspernatur?</p>
+    </div>
+    <script>
+        var string = "This";
+        var name = "Prathmesh";
+        var compliment = "Very Good";
+        var work = "Program Developer"
+        var lang = "JavaScript"
+        var msg = `${name} Is A ${compliment} ${work} And Is Now Learning ${lang}`
+
+        console.log(msg);
+
+        var len = name.length;
+        console.log(`Length Of Name Is ${len}`)
+
+        var y = new String("This")
+        console.log(y)
+        document.getElementById('content').innerHTML = '<h3>This Is An H3 Heading</h3>' // This searches an element with id "content" and then puts in the string in that container as HTML code
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alignment</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
+
+        * {
+            margin-top: 4px;
+            margin-bottom: 8px;
+            font-size: 1.125em;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Bruno Ace SC, cursive;
+        }
+        
+        h1{
+            font-size: 38px;
+            text-align: center;
+        }
+
+        h3{
+            font-size: larger;
+            text-align: center;
+        }
+
+        p{
+            text-align: justify;
+            padding-right: 12px;
+            padding-left: 10px;
+            margin-bottom: 9px;
+        }
+
+        .Container {
+            /* height: 934px; */
+            border: 4px solid black;
+            padding-left: 8px;
+            padding-top: 4px;
+            padding-right: 8px;
+        }
+
+        .Item {
+            border: 3px solid #3f3f3f;
+            background-color: rgb(243, 220, 220);
+        }
+
+        #Fruit{
+            float: left;
+            width: 49.65%;
+        }
+
+        #Computer{
+            float: right;
+            width: 49.65%;
+        }
+
+        #Stationary{
+            clear: both;
+            width: 100%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="Container">
+        <h1>Welcome To My Store</h1>
+        <div id="Fruit" class="Item">
+            <h3>Fruits</h3>
+            <p id="fruitsPara" class="Para">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit aperiam fuga eligendi animi nemo sapiente commodi cum architecto nostrum dolore velit libero consequatur ipsam odio soluta fugit id, nisi a!</p>
+        </div>
+
+        <div id="Computer" class="Item">
+            <h3>Computers</h3>
+            <p id="computerPara" class="Para">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit aperiam fuga eligendi animi nemo sapiente commodi cum architecto nostrum dolore velit libero consequatur ipsam odio soluta fugit id, nisi a!</p>
+        </div>
+
+        <div id="Stationary" class="Item">
+            <h3>Stationaries</h3>
+            <p id="stationaryPara" class="Para">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit aperiam fuga eligendi animi nemo sapiente commodi cum architecto nostrum dolore velit libero consequatur ipsam odio soluta fugit id, nisi a!</p>
+        </div>
+
+        <div id="Glasses" class="Item">
+            <h3>Glasses</h3>
+            <p id="glassesPara" class="Para">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi vitae ut dolore, temporibus earum, corrupti, quibusdam quos perferendis recusandae quod nemo debitis animi repellendus laborum amet. Eaque fuga nam ipsa.</p>
+        </div>
+    </div>
+</body>
+
+</html>

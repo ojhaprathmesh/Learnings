@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyframes And Animations</title>
+    <style>
+        body {
+            margin: 0px;
+        }
+
+        .container {
+            display: flex;
+            font-size: 2rem;
+        }
+
+        .box {
+            display: flex;
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            background-color: cyan;
+            margin: 10px;
+            padding: 10px;
+
+            position: relative;
+            /* top: 405px; */
+            /* left: 1020px; */
+            align-items: center;
+            justify-content: center;
+            /* animation-name: Prathmesh_1; */
+            /* animation-name: Prathmesh_2; */
+            /* animation-duration: 10s; */
+            /* animation-direction: alternate; */
+            /* animation-timing-function: ease-in; */
+            /* animation-delay: 1000ms; */
+            /* animation-iteration-count: infinite; */
+            /* animation-fill-mode: forwards; */
+            /* animation: name duration timing delay iteration fill mode; */
+            animation: Prathmesh_1 10s normal ease infinite;
+        }
+
+        @keyframes Prathmesh_1 {
+            0% {
+                top: 0px;
+                left: 0px;
+                transform: rotate(0deg);
+            }
+            
+            25% {
+                top: 605px;
+                left: 0px;
+                transform: rotate(90deg);
+            }
+            
+            50% {
+                top: 605px;
+                left: 1220px;
+                transform: rotate(180deg);
+            }
+            
+            75% {
+                top: 0px;
+                left: 1220px;
+                transform: rotate(270deg);
+            }
+            
+            100% {
+                top: 0px;
+                left: 0px;
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes Prathmesh_2 {
+            from {
+                height: 200px;
+            }
+
+            to {
+                height: 600px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box"> Box </div>
+    </div>
+</body>
+
+</html>

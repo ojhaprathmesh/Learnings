@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Model</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body{
+            background-image: url(https://th.bing.com/th/id/OIP.1YM53mG10H_U25iPjop83QHaEo?pid=ImgDet&rs=1);
+            background-size: 262px 232px;
+        }
+        
+        h3{
+            margin-top: 2px;
+            margin-bottom: 14px;
+            font-size: 1.6em;
+        }
+
+        p{
+            margin-top: 14px;
+            margin-bottom: 10px;
+            font-size: 31.5px;
+        }
+
+        .Container {
+            background-color: rgb(96 88 219);
+            border: 3px solid rgb(37 4 118);
+            border-radius: 10px;
+            
+            font-family: 'Times New Roman';
+            font-size: 24px;
+            padding-top: 3px;
+            padding-left: 9px;
+            margin-bottom: 9px;
+            /* 
+            padding: top right bottom left
+            padding: y(top/bottom-same) x(left/right-same)
+            Same For Margin
+            */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Container">
+        <h3>This Is My First Heading</h3>
+        <p id="First">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore est blanditiis distinctio eaque
+            unde quaerat ipsum commodi error nihil nesciunt. Ipsum, quod inventore.</p>
+    </div>
+
+    <div class="Container">
+        <h3>This Is My Second Heading</h3>
+        <p id="Second">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore est blanditiis distinctio eaque
+            unde quaerat ipsum commodi error nihil nesciunt. Ipsum, quod inventore.</p>
+    </div>
+
+    <div class="Container">
+        <h3>This Is My Third Heading</h3>
+        <p id="Third">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore est blanditiis distinctio eaque
+            unde quaerat ipsum commodi error nihil nesciunt. Ipsum, quod inventore.</p>
+    </div>
+</body>
+
+</html>

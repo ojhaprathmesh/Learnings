@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid | Tut 6 | Media Queries</title>
+    <style>
+        .container {
+            display: grid;
+            grid-gap: 1.5rem;
+            grid-template-areas:
+                'navbar navbar navbar navbar'
+                'section section section aside'
+                'footer footer footer footer';
+        }
+
+        @media (max-width:500px) {
+            body {
+                background-color: cyan;
+            }
+
+            .container {
+                grid-template-areas:
+                    'navbar navbar navbar navbar'
+                    'section section section section'
+                    'aside aside aside aside'
+                    'footer footer footer footer';
+            }
+
+            #navbar {
+                display: grid;
+                grid-template-areas:
+                    'home services'
+                    'about contact';
+                justify-content: center;
+            }
+
+            #aside {
+                display: none;
+            }
+        }
+
+        @media (min-width:500px) and (max-width:800px) {
+            body {
+                background-color: blue;
+            }
+
+            .container {
+                grid-template-areas:
+                    'navbar navbar navbar navbar'
+                    'section section section section'
+                    'aside aside aside aside'
+                    'footer footer footer footer';
+            }
+
+            #navbar {
+                display: grid;
+                grid-template-areas:
+                    'home services'
+                    'about contact';
+                justify-content: center;
+            }
+
+            #aside {
+                display: none;
+            }
+        }
+
+        @media (min-width:800px) {
+            body {
+                background-color: darkblue;
+            }
+        }
+
+        .bdr {
+            border: 2px solid black;
+            background-color: wheat;
+            padding: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #navbar {
+            grid-area: navbar;
+            font-size: 32px;
+        }
+
+        #section {
+            grid-area: section;
+        }
+
+        #aside {
+            grid-area: aside;
+        }
+
+        #footer {
+            grid-area: footer;
+            font-size: 25px;
+        }
+
+        .navItem {
+            display: inline-block;
+            margin: 0px 10px;
+        }
+
+        #Home {
+            grid-area: home;
+        }
+
+        #Services {
+            grid-area: services;
+        }
+
+        #About {
+            grid-area: about;
+        }
+
+        #Contact {
+            grid-area: contact;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="bdr" id="navbar">
+            <div class="navItem" id="home"> Home </div>
+            <div class="navItem" id="services"> Services </div>
+            <div class="navItem" id="about"> About </div>
+            <div class="navItem" id="contact"> Contact </div>
+        </nav>
+        <section class="bdr" id="section">
+            <h2>Learn CSS In Hindi</h2>
+        </section>
+        <aside class="bdr" id="aside">
+            <h1>
+                More About Us
+            </h1>
+        </aside>
+        <footer class="bdr" id="footer">&copy CodeWithOjha 2023</footer>
+    </div>
+</body>
+
+</html>

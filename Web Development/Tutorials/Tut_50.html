@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript String Functions</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <script>
+        var str = "This is a string";
+        console.log(str);
+        
+        // First Occurence Of A Substring
+        var position = str.indexOf("is");
+        console.log(position);
+        
+        // Last Occurence Of A Substring
+        var position = str.lastIndexOf("is");
+        console.log(position);
+        
+        // Substring From A String
+        var substr1 = str.slice(-6,); // Takes Start And End Value (Can Be Empty) More Like Slicing In Python
+        console.log(substr1);
+
+        var substr2 = str.substring(10,13); // Takes Start And End Value (Can Be Empty) Can Not Take Negative Values
+        console.log(substr2);
+
+        var substr3 = str.substr(10,1) // Takes Starting Position And Number Of Characters
+        console.log(substr3);
+
+        var replaced = str.replace('string', 'Chutiyapa');
+        console.log(replaced);
+
+        console.log(str.toUpperCase());
+        console.log(str.toLowerCase());
+
+        var newString = str.concat('New String');
+        console.log(newString);
+
+        var spaceString = " Prathmesh Ojha ";
+        console.log(spaceString);
+        console.log(spaceString.trim());
+
+        console.log(str.charAt(2));
+        console.log(str.charCodeAt(2));
+
+        console.log(str[2])
+
+        </script>
+</body>
+</html>

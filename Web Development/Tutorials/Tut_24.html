@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Display Property</title>
+    <style>
+        * {
+            font-size: 1.05em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        header {
+            margin: auto;
+            margin-bottom: 8px;
+            border: 4px solid black;
+            width: fit-content;
+        }
+
+        img {
+            margin: auto;
+            width: 40px;
+            display: block;
+        }
+
+        h3 {
+            margin: 0px;
+            text-align: center;
+        }
+
+        .box {
+            border: 2px solid black;
+            background-color: whitesmoke;
+            margin-bottom: 6px;
+            padding: 10px;
+            display: inline-block;
+            box-sizing: border-box;
+            width: 396px;
+        }
+
+        .container {
+            margin: auto;
+            padding-left: 6px;
+            padding-top: 6px;
+            width: 1204px;
+            border: 1px solid black;
+        }
+
+        .heading{
+            text-align: center;
+            margin: 4px;
+        }
+        .para {
+            text-align: justify;
+            margin: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="top">
+        <img src="Logo.png" alt="">
+        <h3>Welcome To My Blog</h3>
+    </header>
+    <div class="container">
+        <div class="box">
+            <h4 class="heading">Heading</h4>
+            <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat distinctio reiciendis itaque praesentium iste laboriosam incidunt, ab delectus, labore esse voluptatem necessitatibus quis obcaecati facere temporibus cumque natus sed eum.</p>
+        </div>
+        <div class="box">
+            <h4 class="heading">Heading</h4>
+            <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat distinctio reiciendis itaque praesentium iste laboriosam incidunt, ab delectus, labore esse voluptatem necessitatibus quis obcaecati facere temporibus cumque natus sed eum.</p>
+        </div>
+        <div class="box">
+            <h4 class="heading">Heading</h4>
+            <p class="para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat distinctio reiciendis itaque praesentium iste laboriosam incidunt, ab delectus, labore esse voluptatem necessitatibus quis obcaecati facere temporibus cumque natus sed eum.</p>
+        </div>
+    </div>
+</body>
+
+</html>

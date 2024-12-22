@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pseudo Selectors And More Designing</title>
+    <style>
+        * {
+            margin-top: 4px;
+            margin-bottom: 4px;
+            font-size: 1.1em;
+        }
+
+        body {
+            font-family: Bruno Ace SC, cursive;
+        }
+
+        h3 {
+            font-size: larger;
+            text-align: center;
+        }
+
+        .Container {
+            border: 2px solid black;
+            border-radius: 4px;
+            background-color: rgb(180, 245, 115);
+            margin: auto;
+            width: 1200px;
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+
+        .Style {
+            border: 2px solid rgb(180, 245, 115);
+            border-radius: 4px;
+            padding-bottom: 2px;
+        }
+
+        .Style:hover {
+            border-radius: 4px;
+            border: 2px solid rgb(170, 235, 105);
+            background-color: rgb(170, 235, 105);
+        }
+
+        .btn {
+            color: black;
+            background-color: silver;
+            border-radius: 4px;
+            border: 2px ridge silver;
+            padding: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bolderz;
+            text-decoration: none;
+            font-family: Bruno Ace SC;
+        }
+
+        .btn:hover {
+            color: rgb(30, 30, 30);
+            background-color: rgb(145, 145, 145);
+            border-radius: 4px;
+        }
+
+        .btn:active {
+            background-color: blue;
+        }
+
+        .btn:visited {
+            color: rgb(40, 40, 40);
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="Container" id="cont1">
+        <h3 class="Style">This Is My Heading</h3>
+        <p class="Style">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur maiores esse quaerat ipsum? Ex libero veniam ea perferendis nulla accusantium natus at ratione voluptatem, ullam possimus nam quas corrupti deserunt.</p>
+        <a href="https://google.com" class="btn">Read More</a>
+        <button class="btn">Contact Us</button>
+    </div>
+</body>
+
+</html>
