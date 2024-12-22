@@ -1,0 +1,11 @@
+table {
+    border: 2px solid black;
+    border-radius: 5px;
+}
+caption {
+    margin-bottom: 1.5px;
+}
+caption, th, td {
+    border: 2px solid black;
+    border-radius: 5px;
+}

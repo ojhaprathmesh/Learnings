@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Element Selector */
+        div {
+            background-color: cyan;
+        }
+
+        /* Class Selector */
+        .orange {
+            background-color: orange;
+        }
+
+        /* Id Selector */
+        #green {
+            background-color: green;
+        }
+
+        /* Descendent Selector */
+        div p {
+            color: orange;
+            background-color: yellow;
+            /* Applies to all the p that are inside any div */
+        }
+
+        /* Child Selector */
+        div>p {
+            color: purple;
+            background-color: turquoise;
+            /* Applies to direct child */
+        }
+
+        /* Universal Selector */
+        * {
+            margin: 0;
+            padding: 5px;
+            /* Applies to all */
+        }
+
+        /* Pseudo Selectors */
+        a:visited {
+            color: tomato;
+            /* Applies to the link which are visted */
+        }
+
+        a:link {
+            color: green;
+            /* Applies to the link which are not visited */
+        }
+
+        a:active {
+            background-color: purple;
+            /* Applies when the link is clicked */
+        }
+
+        a:hover {
+            border: 1px solid black;
+            border-radius: 2px;
+            padding: 4.2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>First Div</div>
+    <div class="orange">Second Div</div>
+    <div id="green">Third Div
+        <p>I am a para inside div</p>
+        <article>
+            <p>I am a para inside article inside div</p>
+        </article>
+    </div>
+    <a href="https://www.google.com" target="_blank">Go To Google</a>
+</body>
+
+</html>
