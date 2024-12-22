@@ -1,0 +1,10 @@
+*.idea
+*.vscode
+*venv
+*__pycache__
+*.zip
+_University/**/*.iml
+_University/**/*.exe
+_University/**/*.pdf
+_University/**/*.docx
+_University/**/*.xlsx
