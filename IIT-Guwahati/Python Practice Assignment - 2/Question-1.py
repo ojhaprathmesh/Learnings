@@ -1,4 +1,5 @@
-def isPalindrome(num : str) -> bool:
+def is_palindrome(num: str) -> bool:
     return num == num[::-1]
 
-print(isPalindrome(input()))
+
+print(is_palindrome(input()))
