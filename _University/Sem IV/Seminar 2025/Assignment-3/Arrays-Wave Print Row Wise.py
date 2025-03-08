@@ -1,4 +1,4 @@
-def toArray():
+def toArray() -> list[int]:
 	return list(map(int, input().split()))
 
 m, n = toArray()
