@@ -1,6 +1,7 @@
 package mad.assignment.audiorecorder;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaRecorder;
@@ -13,7 +14,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -24,8 +24,8 @@ import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-
     private static final int PERMISSION_CODE = 101;
+
     private MediaRecorder recorder;
     private boolean isRecording = false;
     private String filePath;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView statusText;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -42,22 +42,47 @@ public class MainActivity extends AppCompatActivity {
         statusText = findViewById(R.id.statusText);
 
         recordBtn.setOnClickListener(v -> {
-            if (!checkPermissions()) {
+            if (!hasPermissions()) {
                 requestPermissions();
                 return;
             }
 
-            if (!isRecording) startRecording();
-            else stopRecording();
+            if (isRecording) stopRecording();
+            else startRecording();
         });
     }
 
+    private boolean hasPermissions() {
+        boolean micPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED;
+        boolean storagePermission = Build.VERSION.SDK_INT >= Build.VERSION_CODES.R
+                ? Environment.isExternalStorageManager()
+                : ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+
+        return micPermission && storagePermission;
+    }
+
+    private void requestPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
+            intent.setData(Uri.parse("package:" + getPackageName()));
+            startActivity(intent);
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    PERMISSION_CODE);
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
     private void startRecording() {
         File dir = new File(Environment.getExternalStorageDirectory(), "Recordings/MAD_Audio_Recorder");
-        if (!dir.exists()) dir.mkdirs();
+        if (!dir.exists() && !dir.mkdirs()) {
+            Toast.makeText(this, "Failed to create directory", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        String fileName = "recording_" + new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date()) + ".3gp";
-        filePath = new File(dir, fileName).getAbsolutePath();
+        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+        filePath = new File(dir, "recording_" + timestamp + ".3gp").getAbsolutePath();
 
         recorder = new MediaRecorder();
         recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -72,42 +97,22 @@ public class MainActivity extends AppCompatActivity {
             recordBtn.setText("Stop Recording");
             statusText.setText("Recording...");
         } catch (Exception e) {
-            Toast.makeText(this, "Failed to start recording", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Recording failed to start", Toast.LENGTH_SHORT).show();
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void stopRecording() {
         try {
             recorder.stop();
         } catch (Exception ignored) {}
+
         recorder.release();
         recorder = null;
         isRecording = false;
 
         recordBtn.setText("Start Recording");
         statusText.setText("Saved to:\n" + filePath);
-    }
-
-    private boolean checkPermissions() {
-        boolean mic = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED;
-        boolean storage = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            return mic && Environment.isExternalStorageManager();
-        }
-        return mic && storage;
-    }
-
-    private void requestPermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
-            intent.setData(Uri.parse("package:" + getPackageName()));
-            startActivity(intent);
-        } else {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    PERMISSION_CODE);
-        }
     }
 
     @Override
