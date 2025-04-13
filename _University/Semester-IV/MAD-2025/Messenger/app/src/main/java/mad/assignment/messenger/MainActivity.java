@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText phoneInput, messageInput;
     private TextView receivedSmsText;
-    private final int PERMISSION_CODE = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         Button sendBtn = findViewById(R.id.sendBtn);
 
         if (!hasPermissions()) {
+            int PERMISSION_CODE = 123;
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.SEND_SMS, Manifest.permission.RECEIVE_SMS, Manifest.permission.READ_SMS},
                     PERMISSION_CODE);
