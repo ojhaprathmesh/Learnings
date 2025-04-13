@@ -21,6 +21,8 @@ __pycache__/
 *.odt
 *.docx
 *.xlsx
+*.csv
+*.png
 
 # Other folder
 Project Executable/
