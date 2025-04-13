@@ -13,52 +13,48 @@ import android.widget.ToggleButton;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-
     private TextView songTitle;
     private ToggleButton playPauseToggle;
     private MediaPlayer mediaPlayer;
     private Uri selectedSong;
-    private String songName;
+    private String songName = "No song selected";
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button selectBtn = findViewById(R.id.selectBtn);
-        playPauseToggle = findViewById(R.id.playPauseToggle);
-        Button stopBtn = findViewById(R.id.stopBtn);
         songTitle = findViewById(R.id.songTitle);
+        playPauseToggle = findViewById(R.id.playPauseToggle);
+        Button selectBtn = findViewById(R.id.selectBtn);
+        Button stopBtn = findViewById(R.id.stopBtn);
 
-        playPauseToggle.setEnabled(false); // disable until song is picked
+        playPauseToggle.setEnabled(false);
 
-        // Song picker
         ActivityResultLauncher<Intent> songPicker = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                        selectedSong = result.getData().getData();
-                        songName = getFileName(selectedSong);
-                        songTitle.setText("Now selected: " + songName);
-                        playPauseToggle.setEnabled(true);
-                        releasePlayer();
-                    }
+                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                    selectedSong = result.getData().getData();
+                    songName = getFileName(selectedSong);
+                    songTitle.setText("Selected: " + songName);
+                    playPauseToggle.setEnabled(true);
+                    releasePlayer();
                 }
-        );
+            });
 
         selectBtn.setOnClickListener(v -> {
-            Intent pickIntent = new Intent(Intent.ACTION_GET_CONTENT);
-            pickIntent.setType("audio/*");
-            songPicker.launch(Intent.createChooser(pickIntent, "Choose your track"));
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("audio/*");
+            songPicker.launch(Intent.createChooser(intent, "Select a song"));
         });
 
-        playPauseToggle.setOnCheckedChangeListener((button, isChecked) -> {
+        playPauseToggle.setOnCheckedChangeListener((btn, isPlaying) -> {
             if (selectedSong == null) {
-                Toast.makeText(this, "Please select a song first!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Select a song first", Toast.LENGTH_SHORT).show();
                 playPauseToggle.setChecked(false);
                 return;
             }
@@ -68,23 +64,26 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer.setOnCompletionListener(mp -> playPauseToggle.setChecked(false));
             }
 
-            if (isChecked) {
+            if (isPlaying) {
                 mediaPlayer.start();
                 songTitle.setText("Playing: " + songName);
-            } else if (mediaPlayer.isPlaying()) {
+            } else {
                 mediaPlayer.pause();
                 songTitle.setText("Paused: " + songName);
             }
         });
 
-        stopBtn.setOnClickListener(v -> releasePlayer());
+        stopBtn.setOnClickListener(v -> {
+            releasePlayer();
+            songTitle.setText("Stopped: " + songName);
+        });
     }
 
     private String getFileName(Uri uri) {
         try (Cursor cursor = getContentResolver().query(uri, null, null, null, null)) {
             if (cursor != null && cursor.moveToFirst()) {
                 int nameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
-                if (nameIndex >= 0) return cursor.getString(nameIndex);
+                return nameIndex >= 0 ? cursor.getString(nameIndex) : "Unknown";
             }
         }
         return "Unknown";
@@ -97,12 +96,11 @@ public class MainActivity extends AppCompatActivity {
             mediaPlayer = null;
         }
         playPauseToggle.setChecked(false);
-        songTitle.setText("Stopped: " + (songName != null ? songName : ""));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         releasePlayer();
-}
+    }
 }
