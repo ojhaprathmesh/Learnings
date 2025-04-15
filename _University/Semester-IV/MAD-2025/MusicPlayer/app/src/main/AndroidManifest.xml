@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="mad.assignment.musicplayer">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
@@ -6,7 +7,8 @@
 
     <application
         android:label="MAD Music Player"
-        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        tools:ignore="MissingApplicationIcon">
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
