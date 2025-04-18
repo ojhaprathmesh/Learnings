@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MAD Camera</string>
+    <string name="capture_image">Take Photo</string>
+    <string name="captured_image">Captured Image</string>
+</resources>
