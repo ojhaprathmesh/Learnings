@@ -1,112 +1,80 @@
 #include <iostream>
 using namespace std;
 
-struct Node
-{
+struct Node {
     int data;
     Node *next;
-    Node(int val)
-    {
+    Node(int val) {
         data = val;
         next = nullptr;
     }
 };
 
-class LinkedList
-{
+class LinkedList {
 public:
     Node *head;
-    int nodeCount = 0;
 
-    LinkedList()
-    {
+    LinkedList() {
         head = nullptr;
     }
 
-    void insertAtHead(int val)
-    {
+    void insertAtHead(int val) {
         Node *n = new Node(val);
         n->next = head;
         head = n;
-        nodeCount++;
     }
 
-    void insertAtTail(int val)
-    {
+    void insertAtTail(int val) {
         Node *n = new Node(val);
-        if (head == nullptr)
-        {
+        if (head == nullptr) {
             head = n;
             return;
         }
         Node *temp = head;
-        while (temp->next != nullptr)
-        {
+        while (temp->next != nullptr) {
             temp = temp->next;
         }
         temp->next = n;
-        nodeCount++;
     }
 
-    void insertAtTailRecursive(int val, Node *curr)
-    {
-        if (curr == nullptr)
-        {
+    void insertAtTailRecursive(int val, Node *curr) {
+        if (curr == nullptr) {
             head = new Node(val);
-            nodeCount++;
             return;
         }
 
-        if (curr->next == nullptr)
-        {
+        if (curr->next == nullptr) {
             curr->next = new Node(val);
-            nodeCount++;
             return;
         }
         insertAtTailRecursive(val, curr->next);
     }
 
-    void display()
-    {
+    void display() {
         Node *temp = head;
-        while (temp != nullptr)
-        {
+        while (temp != nullptr) {
             cout << '[' << temp->data << ']' << "->";
             temp = temp->next;
         }
         cout << "NULL" << endl;
     }
 
-    void count()
-    {
-        cout << nodeCount << endl;
+    // New efficient count function that traverses the list only when needed
+    int count() {
+        int count = 0;
+        Node *temp = head;
+        while (temp != nullptr) {
+            count++;
+            temp = temp->next;
+        }
+        return count;
     }
 
-    void middleNode()
-    {
-        // Node *temp = head;
-        // if (nodeCount == 0) {
-        //     cout << "Empty list" << endl;
-        //     return;
-        // }
-
-        // int mid = nodeCount / 2;
-
-        // for (int i = 0; i < mid; i++) {
-        //     temp = temp->next;
-        // }
-
-        // if (nodeCount % 2 == 0) {
-        //     cout << temp->data << endl;
-        // } else {
-        //     cout << temp->data << endl;
-        // }
-
+    void middleNode() {
         Node *slow = head;
         Node *fast = head;
 
-        while (fast != nullptr && fast->next->next != nullptr)
-        {
+        while (fast != nullptr && fast->next != nullptr) {
             slow = slow->next;
             fast = fast->next->next;
         }
@@ -114,25 +82,36 @@ public:
         cout << slow->data << endl;
     }
 
-    void deleteAtIndex(int pos)
-    {
+    void deleteAtIndex(int pos) {
         Node *temp = head;
-        for (int i = 1; i < pos; i++)
-        {
+        for (int i = 1; i < pos; i++) {
             temp = temp->next;
         }
-        for (int i = pos; i < nodeCount; i++)
-        {
+        for (int i = pos; i < count() - 1; i++) {
+            // Use the dynamic count function
             temp->data = temp->next->data;
             temp = temp->next;
         }
         temp->next = nullptr;
-        nodeCount--;
+    }
+
+    void reverse() {
+        Node* prev = nullptr;
+        Node* curr = head;
+        Node* next;
+
+        while (curr != nullptr) {
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+
+        head = prev;
     }
 };
 
-int main()
-{
+int main() {
     LinkedList list;
     list.insertAtHead(1);
     list.insertAtHead(2);
@@ -142,8 +121,10 @@ int main()
     list.insertAtTail(-2);
     list.insertAtTailRecursive(-20, list.head);
     list.display();
-    list.count();
-    // list.middleNode();
+    cout << "Node count: " << list.count() << endl;  // Display count only when needed
     list.deleteAtIndex(4);
+    list.display();
+    cout << "Node count: " << list.count() << endl;  // Display count again after deletion
+    list.reverse();
     list.display();
 }
