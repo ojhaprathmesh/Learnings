@@ -1,0 +1,6 @@
+# Ignore unwanted folders and files
+*Rproj.user/
+*.RData
+*.Rhistory
+*.Rproj
+*.xlsx
