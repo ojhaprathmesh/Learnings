@@ -1,0 +1,116 @@
+# --- Unity generated folders ---
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+UserSettings/
+MemoryCaptures/
+.plastic/
+.consulo/
+ExportedObj/
+ignore.conf
+
+# --- Visual Studio / VSCode ---
+.vs/
+.vscode/
+.idea/
+.vsconfig
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# --- Rider IDE ---
+*.sln.iml
+
+# --- OS generated files ---
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# --- Cache / Auto-generated ---
+*.apk
+*.aab
+*.unitypackage
+*.prefab.unitypackage
+*.meta
+*.bak
+*.old
+*.orig
+
+# --- Crash / Reports / Logs ---
+*.stacktrace
+*.log
+sysinfo.txt
+crashlytics-build.properties
+
+# --- Package Manager ---
+Packages/com.unity.package-manager-ui
+Packages/manifest.json.meta
+Packages/packages-lock.json.meta
+
+# --- Collaborate / Plastic SCM ---
+.collab/
+PlasticSCM/
+**/Assets/AssetStoreTools
+**/assets/assetstoretools
+/Assets/Plugins/PlasticSCM*
+/assets/plugins/PlasticSCM*
+
+# --- Build Artifacts ---
+Build/
+Builds/
+*.exe
+*.app
+*.dll
+*.so
+*.dylib
+
+# --- Generated Lighting ---
+LightingData.asset
+Lightmap*
+ReflectionProbe*
+
+# --- Addressables ---
+/Assets/AddressableAssetsData/*/*.bin*
+/Assets/AddressableAssetsData/link.xml
+**/Assets/StreamingAssets/aa.meta
+**/assets/streamingassets/*/aa/*
+
+# --- Local Config files ---
+*.local
+*.db
+*.pid
+*.json.meta
+*.cache
+
+# --- Ignore private or temporary assets ---
+*.private
+*.private.meta
+^*.private.[0-9]+$
+^*.private.[0-9]+.meta$
+
+# --- Ignore Unity auto-generated meta for ignored files ---
+!Assets/**/*.meta
+!ProjectSettings/**/*.asset
+
+# --- Keep these important directories ---
+!Assets/
+!ProjectSettings/
+!Packages/
