@@ -6,13 +6,24 @@
 venv/
 
 # Python cache directories
-__pycache__/ 
+__pycache__/
+
+# Ignore unwanted code folders
+node_modules/
+dist/
 
 # Archive and compressed files
 *.zip
 
 # JetBrains project files
 *.iml
+
+# Ignore unwanted images and media files
+*.png
+*.jpg
+*.jpeg
+*.mp3
+*.mp4
 
 # Document and file formats
 *.txt
@@ -22,7 +33,10 @@ __pycache__/
 *.docx
 *.xlsx
 *.csv
-*.png
+*.pptx
 
-# Other folder
+# Environment variables
+*.env
+
+# Other folders
 Project Executable/
