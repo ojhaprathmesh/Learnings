@@ -68,6 +68,7 @@ class GemmaFineTuner:
             model=model,
             train_dataset=train_dataset,
             eval_dataset=val_dataset,
+            
             # SFTConfig / training args
             args=SFTConfig(
                 output_dir=self.config.training.output_dir,
@@ -91,9 +92,9 @@ class GemmaFineTuner:
                 load_best_model_at_end=self.config.training.load_best_model_at_end,
                 metric_for_best_model=self.config.training.metric_for_best_model,
                 greater_is_better=self.config.training.greater_is_better,
-                dataset_text_field="text",              # Column name in our Dataset
+                dataset_text_field="text",
                 max_length=self.config.model.max_seq_length,
-                packing=False,                          # No sequence packing for QA
+                packing=False,
             ),
             processing_class=tokenizer,
         )

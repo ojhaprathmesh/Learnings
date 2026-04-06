@@ -25,11 +25,12 @@ Pipeline stages
 5. Save       - persist LoRA adapter + tokenizer
 6. Evaluate   - accuracy + ROUGE on validation set
 """
+import os
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
 import argparse
 import logging
 import sys
-import os
 from dataclasses import asdict
 from pathlib import Path
 

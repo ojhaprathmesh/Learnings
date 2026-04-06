@@ -67,7 +67,6 @@ class MedQADatasetProcessor:
         logger.info("Loading dataset: %s", self.config.dataset_name)
         self._raw = load_dataset(
             self.config.dataset_name,
-            trust_remote_code=True,
         )
         logger.info("Raw dataset: %s", self._raw)
         return self._raw

@@ -18,6 +18,7 @@ import torch
 from datasets import Dataset
 from transformers import PreTrainedModel, PreTrainedTokenizer
 
+logging.getLogger("bert_score").setLevel(logging.ERROR)
 logger = logging.getLogger(__name__)
 
 # Lazy imports so the module loads even without optional deps

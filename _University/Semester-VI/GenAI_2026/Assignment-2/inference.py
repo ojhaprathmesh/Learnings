@@ -66,7 +66,7 @@ def load_base_model(model_name: str, tokenizer):
     model = AutoModelForCausalLM.from_pretrained(
         model_name,
         device_map="auto",
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
     )
     model.eval()
     return model
@@ -77,7 +77,7 @@ def load_finetuned_model(base_model_name: str, adapter_path: str, tokenizer):
     base = AutoModelForCausalLM.from_pretrained(
         base_model_name,
         device_map="auto",
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
     )
     model = PeftModel.from_pretrained(base, adapter_path)
     model.eval()

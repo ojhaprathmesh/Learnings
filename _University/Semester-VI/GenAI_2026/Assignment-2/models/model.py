@@ -78,7 +78,7 @@ class GemmaModelLoader:
         base_model = AutoModelForCausalLM.from_pretrained(
             base_model_path,
             device_map="auto",
-            torch_dtype=torch.float16,
+            dtype=torch.float16,
         )
         logger.info("Loading LoRA adapter from: %s", adapter_path)
         model = PeftModel.from_pretrained(base_model, adapter_path)
@@ -134,7 +134,8 @@ class GemmaModelLoader:
             quantization_config=bnb_config,
             device_map={"": 0},
             trust_remote_code=True,
-            torch_dtype=compute_dtype,
+            dtype=compute_dtype,
+            low_cpu_mem_usage=True,
         )
         model.config.use_cache = False           # Disable KV cache during training
         model.config.pretraining_tp = 1          # Tensor parallelism = 1 for training

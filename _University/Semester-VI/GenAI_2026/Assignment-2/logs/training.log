@@ -1338,3 +1338,951 @@ Explanation: Chronic urethral obstruction
 2026-04-05 20:51:35 | INFO     | models.model | Loading model: google/gemma-2b (4-bit QLoRA)
 2026-04-05 20:51:36 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
 2026-04-05 20:51:36 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:06:32 | INFO     | utils.utils | PyTorch version : 2.5.1+cu121
+2026-04-05 21:06:32 | INFO     | utils.utils | CUDA available  : True
+2026-04-05 21:06:32 | INFO     | utils.utils | CUDA version    : 12.1
+2026-04-05 21:06:32 | INFO     | utils.utils |   GPU 0: NVIDIA GeForce RTX 4050 Laptop GPU | VRAM: 6.4 GB
+2026-04-05 21:06:32 | INFO     | root | ============================================================
+2026-04-05 21:06:32 | INFO     | root | STAGE 1: Setup Complete
+2026-04-05 21:06:32 | INFO     | root | Config:
+  model: {'model_name': 'google/gemma-2b', 'tokenizer_name': 'google/gemma-2b', 'max_seq_length': 512, 'load_in_4bit': True, 'bnb_4bit_compute_dtype': 'bfloat16', 'bnb_4bit_quant_type': 'nf4', 'use_nested_quant': False}
+  lora: {'r': 16, 'lora_alpha': 32, 'target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'], 'lora_dropout': 0.05, 'bias': 'none', 'task_type': 'CAUSAL_LM'}
+  data: {'dataset_name': 'medmcqa', 'dataset_split_train': 'train', 'dataset_split_val': 'validation', 'max_train_samples': 2000, 'max_val_samples': 200, 'train_test_split_ratio': 0.1, 'seed': 42, 'input_col': 'input_prompt', 'output_col': 'expected_output'}
+  training: {'output_dir': './outputs/gemma_medqa_lora', 'num_train_epochs': 3, 'per_device_train_batch_size': 2, 'per_device_eval_batch_size': 2, 'gradient_accumulation_steps': 4, 'learning_rate': 0.0002, 'weight_decay': 0.001, 'warmup_ratio': 0.03, 'lr_scheduler_type': 'cosine', 'logging_steps': 25, 'eval_steps': 100, 'save_steps': 100, 'save_total_limit': 2, 'fp16': False, 'bf16': True, 'max_grad_norm': 0.3, 'report_to': 'none', 'evaluation_strategy': 'steps', 'load_best_model_at_end': True, 'metric_for_best_model': 'eval_loss', 'greater_is_better': False}
+  log_dir: ./logs
+  checkpoint_dir: ./checkpoints
+  final_model_dir: ./outputs/final_model
+2026-04-05 21:06:32 | INFO     | root | ============================================================
+2026-04-05 21:06:32 | INFO     | __main__ | ============================================================
+2026-04-05 21:06:32 | INFO     | __main__ | STAGE 2: Data Loading & Preprocessing
+2026-04-05 21:06:32 | INFO     | __main__ | ============================================================
+2026-04-05 21:06:32 | INFO     | data.dataset | Loading dataset: medmcqa
+2026-04-05 21:06:32 | ERROR    | datasets.load | `trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'medmcqa' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+2026-04-05 21:06:34 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:06:34 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:06:34 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/openlifescienceai/medmcqa/91c6572c454088bf71b679ad90aa8dffcd0d5868/README.md "HTTP/1.1 200 OK"
+2026-04-05 21:06:35 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:06:35 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 21:06:36 | INFO     | httpx | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/medmcqa/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 21:06:37 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:06:37 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 200 OK"
+2026-04-05 21:06:38 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:06:39 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-05 21:06:40 | INFO     | httpx | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=medmcqa "HTTP/1.1 404 Not Found"
+2026-04-05 21:06:40 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:06:41 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:06:41 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:06:41 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:06:42 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:06:42 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-04-05 21:06:42 | INFO     | data.dataset | Raw dataset: DatasetDict({
+    train: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 182822
+    })
+    test: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 6150
+    })
+    validation: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 4183
+    })
+})
+2026-04-05 21:06:42 | INFO     | data.dataset | Train: 2000 samples | Val: 200 samples
+2026-04-05 21:06:42 | INFO     | __main__ | Train dataset columns : ['text']
+2026-04-05 21:06:42 | INFO     | __main__ | Sample training text  :
+You are a knowledgeable medical assistant. Answer the following multiple-choice question by selecting the correct option and providing a brief explanation.
+
+Question: Chronic urethral obstruction due to benign prismatic hyperplasia can lead to the following change in kidney parenchyma
+A) Hyperplasia
+B) Hyperophy
+C) Atrophy
+D) Dyplasia
+
+Answer: B) Hyperophy
+Explanation: Chronic urethral obstruction
+...
+2026-04-05 21:06:42 | INFO     | __main__ | ============================================================
+2026-04-05 21:06:42 | INFO     | __main__ | STAGE 3: Model Loading (QLoRA)
+2026-04-05 21:06:42 | INFO     | __main__ | ============================================================
+2026-04-05 21:06:42 | INFO     | models.model | Loading tokenizer: google/gemma-2b
+2026-04-05 21:06:43 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:06:43 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-05 21:06:44 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-05 21:06:44 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:06:47 | INFO     | models.model | Loading model: google/gemma-2b (4-bit QLoRA)
+2026-04-05 21:06:47 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:06:47 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:10:35 | INFO     | utils.utils | PyTorch version : 2.5.1+cu121
+2026-04-05 21:10:35 | INFO     | utils.utils | CUDA available  : True
+2026-04-05 21:10:35 | INFO     | utils.utils | CUDA version    : 12.1
+2026-04-05 21:10:35 | INFO     | utils.utils |   GPU 0: NVIDIA GeForce RTX 4050 Laptop GPU | VRAM: 6.4 GB
+2026-04-05 21:10:35 | INFO     | root | ============================================================
+2026-04-05 21:10:35 | INFO     | root | STAGE 1: Setup Complete
+2026-04-05 21:10:35 | INFO     | root | Config:
+  model: {'model_name': 'google/gemma-2b', 'tokenizer_name': 'google/gemma-2b', 'max_seq_length': 512, 'load_in_4bit': True, 'bnb_4bit_compute_dtype': 'bfloat16', 'bnb_4bit_quant_type': 'nf4', 'use_nested_quant': False}
+  lora: {'r': 16, 'lora_alpha': 32, 'target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'], 'lora_dropout': 0.05, 'bias': 'none', 'task_type': 'CAUSAL_LM'}
+  data: {'dataset_name': 'medmcqa', 'dataset_split_train': 'train', 'dataset_split_val': 'validation', 'max_train_samples': 50, 'max_val_samples': 20, 'train_test_split_ratio': 0.1, 'seed': 42, 'input_col': 'input_prompt', 'output_col': 'expected_output'}
+  training: {'output_dir': './outputs/gemma_medqa_lora', 'num_train_epochs': 1, 'per_device_train_batch_size': 2, 'per_device_eval_batch_size': 2, 'gradient_accumulation_steps': 4, 'learning_rate': 0.0002, 'weight_decay': 0.001, 'warmup_ratio': 0.03, 'lr_scheduler_type': 'cosine', 'logging_steps': 25, 'eval_steps': 100, 'save_steps': 100, 'save_total_limit': 2, 'fp16': False, 'bf16': True, 'max_grad_norm': 0.3, 'report_to': 'none', 'evaluation_strategy': 'steps', 'load_best_model_at_end': True, 'metric_for_best_model': 'eval_loss', 'greater_is_better': False}
+  log_dir: ./logs
+  checkpoint_dir: ./checkpoints
+  final_model_dir: ./outputs/final_model
+2026-04-05 21:10:35 | INFO     | root | ============================================================
+2026-04-05 21:10:35 | INFO     | __main__ | ============================================================
+2026-04-05 21:10:35 | INFO     | __main__ | STAGE 2: Data Loading & Preprocessing
+2026-04-05 21:10:35 | INFO     | __main__ | ============================================================
+2026-04-05 21:10:35 | INFO     | data.dataset | Loading dataset: medmcqa
+2026-04-05 21:10:35 | ERROR    | datasets.load | `trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'medmcqa' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+2026-04-05 21:10:37 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:10:37 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:10:37 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/openlifescienceai/medmcqa/91c6572c454088bf71b679ad90aa8dffcd0d5868/README.md "HTTP/1.1 200 OK"
+2026-04-05 21:10:38 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:10:39 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 21:10:40 | INFO     | httpx | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/medmcqa/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 21:10:40 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:10:41 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 200 OK"
+2026-04-05 21:10:41 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:10:41 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-05 21:10:42 | INFO     | httpx | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=medmcqa "HTTP/1.1 404 Not Found"
+2026-04-05 21:10:43 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:10:43 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:10:43 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:10:44 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:10:44 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:10:45 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-04-05 21:10:45 | INFO     | data.dataset | Raw dataset: DatasetDict({
+    train: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 182822
+    })
+    test: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 6150
+    })
+    validation: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 4183
+    })
+})
+2026-04-05 21:10:45 | INFO     | data.dataset | Train: 50 samples | Val: 20 samples
+2026-04-05 21:10:45 | INFO     | __main__ | Train dataset columns : ['text']
+2026-04-05 21:10:45 | INFO     | __main__ | Sample training text  :
+You are a knowledgeable medical assistant. Answer the following multiple-choice question by selecting the correct option and providing a brief explanation.
+
+Question: Chronic urethral obstruction due to benign prismatic hyperplasia can lead to the following change in kidney parenchyma
+A) Hyperplasia
+B) Hyperophy
+C) Atrophy
+D) Dyplasia
+
+Answer: B) Hyperophy
+Explanation: Chronic urethral obstruction
+...
+2026-04-05 21:10:45 | INFO     | __main__ | ============================================================
+2026-04-05 21:10:45 | INFO     | __main__ | STAGE 3: Model Loading (QLoRA)
+2026-04-05 21:10:45 | INFO     | __main__ | ============================================================
+2026-04-05 21:10:45 | INFO     | models.model | Loading tokenizer: google/gemma-2b
+2026-04-05 21:10:46 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:10:46 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-05 21:10:47 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-05 21:10:47 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:10:49 | INFO     | models.model | Loading model: google/gemma-2b (4-bit QLoRA)
+2026-04-05 21:10:49 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:10:50 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:13:34 | INFO     | utils.utils | PyTorch version : 2.5.1+cu121
+2026-04-05 21:13:34 | INFO     | utils.utils | CUDA available  : True
+2026-04-05 21:13:34 | INFO     | utils.utils | CUDA version    : 12.1
+2026-04-05 21:13:34 | INFO     | utils.utils |   GPU 0: NVIDIA GeForce RTX 4050 Laptop GPU | VRAM: 6.4 GB
+2026-04-05 21:13:34 | INFO     | root | ============================================================
+2026-04-05 21:13:34 | INFO     | root | STAGE 1: Setup Complete
+2026-04-05 21:13:34 | INFO     | root | Config:
+  model: {'model_name': 'google/gemma-2b', 'tokenizer_name': 'google/gemma-2b', 'max_seq_length': 512, 'load_in_4bit': True, 'bnb_4bit_compute_dtype': 'bfloat16', 'bnb_4bit_quant_type': 'nf4', 'use_nested_quant': False}
+  lora: {'r': 16, 'lora_alpha': 32, 'target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'], 'lora_dropout': 0.05, 'bias': 'none', 'task_type': 'CAUSAL_LM'}
+  data: {'dataset_name': 'medmcqa', 'dataset_split_train': 'train', 'dataset_split_val': 'validation', 'max_train_samples': 50, 'max_val_samples': 20, 'train_test_split_ratio': 0.1, 'seed': 42, 'input_col': 'input_prompt', 'output_col': 'expected_output'}
+  training: {'output_dir': './outputs/gemma_medqa_lora', 'num_train_epochs': 1, 'per_device_train_batch_size': 2, 'per_device_eval_batch_size': 2, 'gradient_accumulation_steps': 4, 'learning_rate': 0.0002, 'weight_decay': 0.001, 'warmup_ratio': 0.03, 'lr_scheduler_type': 'cosine', 'logging_steps': 25, 'eval_steps': 100, 'save_steps': 100, 'save_total_limit': 2, 'fp16': False, 'bf16': True, 'max_grad_norm': 0.3, 'report_to': 'none', 'evaluation_strategy': 'steps', 'load_best_model_at_end': True, 'metric_for_best_model': 'eval_loss', 'greater_is_better': False}
+  log_dir: ./logs
+  checkpoint_dir: ./checkpoints
+  final_model_dir: ./outputs/final_model
+2026-04-05 21:13:34 | INFO     | root | ============================================================
+2026-04-05 21:13:34 | INFO     | __main__ | ============================================================
+2026-04-05 21:13:34 | INFO     | __main__ | STAGE 2: Data Loading & Preprocessing
+2026-04-05 21:13:34 | INFO     | __main__ | ============================================================
+2026-04-05 21:13:34 | INFO     | data.dataset | Loading dataset: medmcqa
+2026-04-05 21:13:34 | ERROR    | datasets.load | `trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'medmcqa' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+2026-04-05 21:13:35 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:13:35 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:13:35 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/openlifescienceai/medmcqa/91c6572c454088bf71b679ad90aa8dffcd0d5868/README.md "HTTP/1.1 200 OK"
+2026-04-05 21:13:35 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:13:35 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 21:13:36 | INFO     | httpx | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/medmcqa/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 21:13:36 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:13:37 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 200 OK"
+2026-04-05 21:13:37 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:13:37 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-05 21:13:38 | INFO     | httpx | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=medmcqa "HTTP/1.1 404 Not Found"
+2026-04-05 21:13:38 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:13:38 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:13:38 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:13:39 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:13:39 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:13:39 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-04-05 21:13:39 | INFO     | data.dataset | Raw dataset: DatasetDict({
+    train: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 182822
+    })
+    test: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 6150
+    })
+    validation: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 4183
+    })
+})
+2026-04-05 21:13:39 | INFO     | data.dataset | Train: 50 samples | Val: 20 samples
+2026-04-05 21:13:39 | INFO     | __main__ | Train dataset columns : ['text']
+2026-04-05 21:13:39 | INFO     | __main__ | Sample training text  :
+You are a knowledgeable medical assistant. Answer the following multiple-choice question by selecting the correct option and providing a brief explanation.
+
+Question: Chronic urethral obstruction due to benign prismatic hyperplasia can lead to the following change in kidney parenchyma
+A) Hyperplasia
+B) Hyperophy
+C) Atrophy
+D) Dyplasia
+
+Answer: B) Hyperophy
+Explanation: Chronic urethral obstruction
+...
+2026-04-05 21:13:39 | INFO     | __main__ | ============================================================
+2026-04-05 21:13:39 | INFO     | __main__ | STAGE 3: Model Loading (QLoRA)
+2026-04-05 21:13:39 | INFO     | __main__ | ============================================================
+2026-04-05 21:13:39 | INFO     | models.model | Loading tokenizer: google/gemma-2b
+2026-04-05 21:13:40 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:13:40 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-05 21:13:40 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-05 21:13:40 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:13:42 | INFO     | models.model | Loading model: google/gemma-2b (4-bit QLoRA)
+2026-04-05 21:13:42 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:13:43 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:13:56 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/generation_config.json "HTTP/1.1 200 OK"
+2026-04-05 21:13:56 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-04-05 21:13:57 | INFO     | models.model | Injecting LoRA adapters | r=16 | alpha=32 | modules={'o_proj', 'gate_proj', 'v_proj', 'down_proj', 'q_proj', 'k_proj', 'up_proj'}
+2026-04-05 21:13:57 | INFO     | models.model | Trainable parameters: 19611648 / 1534879744 (1.28%)
+2026-04-05 21:13:57 | INFO     | __main__ | ============================================================
+2026-04-05 21:13:57 | INFO     | __main__ | STAGE 4: Fine-Tuning
+2026-04-05 21:13:57 | INFO     | __main__ | ============================================================
+2026-04-05 21:14:04 | INFO     | training.trainer | ============================================================
+2026-04-05 21:14:04 | INFO     | training.trainer | Starting fine-tuning...
+2026-04-05 21:14:04 | INFO     | training.trainer | Output dir : ./outputs/gemma_medqa_lora
+2026-04-05 21:14:04 | INFO     | training.trainer | Epochs     : 1
+2026-04-05 21:14:04 | INFO     | training.trainer | Batch size : 2 (x4 grad accum)
+2026-04-05 21:14:04 | INFO     | training.trainer | ============================================================
+2026-04-05 21:15:14 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:15:14 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:15:15 | INFO     | training.trainer | Training complete.
+2026-04-05 21:15:15 | INFO     | training.trainer |   Total steps     : 7
+2026-04-05 21:15:15 | INFO     | training.trainer |   Training loss   : 2.5428
+2026-04-05 21:15:15 | INFO     | training.trainer |   train_runtime                 : 70.7426
+2026-04-05 21:15:15 | INFO     | training.trainer |   train_samples_per_second      : 0.707
+2026-04-05 21:15:15 | INFO     | training.trainer |   train_steps_per_second        : 0.099
+2026-04-05 21:15:15 | INFO     | training.trainer |   total_flos                    : 140625113456640.0
+2026-04-05 21:15:15 | INFO     | training.trainer |   train_loss                    : 2.5427938188825334
+2026-04-05 21:15:15 | INFO     | training.trainer | Saving model adapter to: ./outputs/final_model
+2026-04-05 21:15:15 | WARNING  | huggingface_hub.repocard | Repo card metadata block was not found. Setting CardData to empty.
+2026-04-05 21:15:15 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:15:15 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:15:16 | INFO     | training.trainer | Model saved successfully.
+2026-04-05 21:15:16 | INFO     | training.trainer | Running evaluation on validation set...
+2026-04-05 21:17:54 | INFO     | utils.utils | PyTorch version : 2.5.1+cu121
+2026-04-05 21:17:54 | INFO     | utils.utils | CUDA available  : True
+2026-04-05 21:17:54 | INFO     | utils.utils | CUDA version    : 12.1
+2026-04-05 21:17:54 | INFO     | utils.utils |   GPU 0: NVIDIA GeForce RTX 4050 Laptop GPU | VRAM: 6.4 GB
+2026-04-05 21:17:54 | INFO     | root | ============================================================
+2026-04-05 21:17:54 | INFO     | root | STAGE 1: Setup Complete
+2026-04-05 21:17:54 | INFO     | root | Config:
+  model: {'model_name': 'google/gemma-2b', 'tokenizer_name': 'google/gemma-2b', 'max_seq_length': 512, 'load_in_4bit': True, 'bnb_4bit_compute_dtype': 'bfloat16', 'bnb_4bit_quant_type': 'nf4', 'use_nested_quant': False}
+  lora: {'r': 16, 'lora_alpha': 32, 'target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'], 'lora_dropout': 0.05, 'bias': 'none', 'task_type': 'CAUSAL_LM'}
+  data: {'dataset_name': 'medmcqa', 'dataset_split_train': 'train', 'dataset_split_val': 'validation', 'max_train_samples': 50, 'max_val_samples': 20, 'train_test_split_ratio': 0.1, 'seed': 42, 'input_col': 'input_prompt', 'output_col': 'expected_output'}
+  training: {'output_dir': './outputs/gemma_medqa_lora', 'num_train_epochs': 1, 'per_device_train_batch_size': 2, 'per_device_eval_batch_size': 2, 'gradient_accumulation_steps': 4, 'learning_rate': 0.0002, 'weight_decay': 0.001, 'warmup_ratio': 0.03, 'lr_scheduler_type': 'cosine', 'logging_steps': 25, 'eval_steps': 100, 'save_steps': 100, 'save_total_limit': 2, 'fp16': False, 'bf16': True, 'max_grad_norm': 0.3, 'report_to': 'none', 'evaluation_strategy': 'steps', 'load_best_model_at_end': True, 'metric_for_best_model': 'eval_loss', 'greater_is_better': False}
+  log_dir: ./logs
+  checkpoint_dir: ./checkpoints
+  final_model_dir: ./outputs/final_model
+2026-04-05 21:17:54 | INFO     | root | ============================================================
+2026-04-05 21:17:54 | INFO     | __main__ | ============================================================
+2026-04-05 21:17:54 | INFO     | __main__ | STAGE 2: Data Loading & Preprocessing
+2026-04-05 21:17:54 | INFO     | __main__ | ============================================================
+2026-04-05 21:17:54 | INFO     | data.dataset | Loading dataset: medmcqa
+2026-04-05 21:17:54 | ERROR    | datasets.load | `trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'medmcqa' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+2026-04-05 21:17:55 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:17:55 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:17:55 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/openlifescienceai/medmcqa/91c6572c454088bf71b679ad90aa8dffcd0d5868/README.md "HTTP/1.1 200 OK"
+2026-04-05 21:17:55 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:17:55 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 21:17:56 | INFO     | httpx | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/medmcqa/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 21:17:56 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:17:57 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 200 OK"
+2026-04-05 21:17:57 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:17:57 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-05 21:17:58 | INFO     | httpx | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=medmcqa "HTTP/1.1 404 Not Found"
+2026-04-05 21:17:58 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:17:58 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:17:58 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:17:59 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:17:59 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:17:59 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-04-05 21:18:00 | INFO     | data.dataset | Raw dataset: DatasetDict({
+    train: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 182822
+    })
+    test: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 6150
+    })
+    validation: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 4183
+    })
+})
+2026-04-05 21:18:00 | INFO     | data.dataset | Train: 50 samples | Val: 20 samples
+2026-04-05 21:18:00 | INFO     | __main__ | Train dataset columns : ['text']
+2026-04-05 21:18:00 | INFO     | __main__ | Sample training text  :
+You are a knowledgeable medical assistant. Answer the following multiple-choice question by selecting the correct option and providing a brief explanation.
+
+Question: Chronic urethral obstruction due to benign prismatic hyperplasia can lead to the following change in kidney parenchyma
+A) Hyperplasia
+B) Hyperophy
+C) Atrophy
+D) Dyplasia
+
+Answer: B) Hyperophy
+Explanation: Chronic urethral obstruction
+...
+2026-04-05 21:18:00 | INFO     | __main__ | ============================================================
+2026-04-05 21:18:00 | INFO     | __main__ | STAGE 3: Model Loading (QLoRA)
+2026-04-05 21:18:00 | INFO     | __main__ | ============================================================
+2026-04-05 21:18:00 | INFO     | models.model | Loading tokenizer: google/gemma-2b
+2026-04-05 21:18:00 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:18:00 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-05 21:18:01 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-05 21:18:01 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:18:03 | INFO     | models.model | Loading model: google/gemma-2b (4-bit QLoRA)
+2026-04-05 21:18:03 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:18:03 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:18:11 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/generation_config.json "HTTP/1.1 200 OK"
+2026-04-05 21:18:11 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-04-05 21:18:12 | INFO     | models.model | Injecting LoRA adapters | r=16 | alpha=32 | modules={'down_proj', 'k_proj', 'up_proj', 'v_proj', 'o_proj', 'q_proj', 'gate_proj'}
+2026-04-05 21:18:12 | INFO     | models.model | Trainable parameters: 19611648 / 1534879744 (1.28%)
+2026-04-05 21:18:12 | INFO     | __main__ | ============================================================
+2026-04-05 21:18:12 | INFO     | __main__ | STAGE 4: Fine-Tuning
+2026-04-05 21:18:12 | INFO     | __main__ | ============================================================
+2026-04-05 21:18:20 | INFO     | training.trainer | ============================================================
+2026-04-05 21:18:20 | INFO     | training.trainer | Starting fine-tuning...
+2026-04-05 21:18:20 | INFO     | training.trainer | Output dir : ./outputs/gemma_medqa_lora
+2026-04-05 21:18:20 | INFO     | training.trainer | Epochs     : 1
+2026-04-05 21:18:20 | INFO     | training.trainer | Batch size : 2 (x4 grad accum)
+2026-04-05 21:18:20 | INFO     | training.trainer | ============================================================
+2026-04-05 21:19:28 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:19:29 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:19:30 | INFO     | training.trainer | Training complete.
+2026-04-05 21:19:30 | INFO     | training.trainer |   Total steps     : 7
+2026-04-05 21:19:30 | INFO     | training.trainer |   Training loss   : 2.5430
+2026-04-05 21:19:30 | INFO     | training.trainer |   train_runtime                 : 69.9578
+2026-04-05 21:19:30 | INFO     | training.trainer |   train_samples_per_second      : 0.715
+2026-04-05 21:19:30 | INFO     | training.trainer |   train_steps_per_second        : 0.1
+2026-04-05 21:19:30 | INFO     | training.trainer |   total_flos                    : 140625113456640.0
+2026-04-05 21:19:30 | INFO     | training.trainer |   train_loss                    : 2.542953763689314
+2026-04-05 21:19:30 | INFO     | training.trainer | Saving model adapter to: ./outputs/final_model
+2026-04-05 21:19:30 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:19:31 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:19:32 | INFO     | training.trainer | Model saved successfully.
+2026-04-05 21:19:32 | INFO     | training.trainer | Running evaluation on validation set...
+2026-04-05 21:19:52 | INFO     | training.trainer | Eval metrics: {'eval_loss': 2.2180707454681396, 'eval_runtime': 20.4024, 'eval_samples_per_second': 0.98, 'eval_steps_per_second': 0.49}
+2026-04-05 21:19:52 | INFO     | root | Training evaluation metrics: {'eval_loss': 2.2180707454681396, 'eval_runtime': 20.4024, 'eval_samples_per_second': 0.98, 'eval_steps_per_second': 0.49}
+2026-04-05 21:19:52 | INFO     | __main__ | ============================================================
+2026-04-05 21:19:52 | INFO     | __main__ | STAGE 5: Evaluation
+2026-04-05 21:19:52 | INFO     | __main__ | ============================================================
+2026-04-05 21:19:52 | INFO     | evaluation.evaluator | Generating predictions for 20 samples...
+2026-04-05 21:26:01 | INFO     | evaluation.evaluator | Accuracy: 0.4500 (9/20)
+2026-04-05 21:26:01 | INFO     | absl | Using default tokenizer.
+2026-04-05 21:26:02 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:26:02 | INFO     | httpx | HTTP Request: GET https://huggingface.co/roberta-large/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:26:02 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-05 21:26:03 | INFO     | httpx | HTTP Request: GET https://huggingface.co/roberta-large/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-05 21:26:03 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/roberta-large/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:26:03 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/FacebookAI/roberta-large/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-05 21:26:03 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/roberta-large/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:26:04 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/FacebookAI/roberta-large/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:26:04 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/vocab.json "HTTP/1.1 200 OK"
+2026-04-05 21:26:04 | INFO     | httpx | HTTP Request: GET https://huggingface.co/roberta-large/resolve/main/vocab.json "HTTP/1.1 200 OK"
+2026-04-05 21:26:05 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/merges.txt "HTTP/1.1 200 OK"
+2026-04-05 21:26:05 | INFO     | httpx | HTTP Request: GET https://huggingface.co/roberta-large/resolve/main/merges.txt "HTTP/1.1 200 OK"
+2026-04-05 21:26:06 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/tokenizer.json "HTTP/1.1 200 OK"
+2026-04-05 21:26:07 | INFO     | httpx | HTTP Request: GET https://huggingface.co/roberta-large/resolve/main/tokenizer.json "HTTP/1.1 200 OK"
+2026-04-05 21:26:08 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-04-05 21:26:08 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/special_tokens_map.json "HTTP/1.1 404 Not Found"
+2026-04-05 21:26:08 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-04-05 21:26:09 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:26:09 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-04-05 21:26:09 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:26:10 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-04-05 21:26:10 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/FacebookAI/roberta-large/xet-read-token/722cf37b1afa9454edce342e7895e588b6ff1d59 "HTTP/1.1 200 OK"
+2026-04-05 21:30:05 | INFO     | evaluation.evaluator | Evaluation Results:
+2026-04-05 21:30:05 | INFO     | evaluation.evaluator |   accuracy            : 0.4500
+2026-04-05 21:30:05 | INFO     | evaluation.evaluator |   rouge1              : 0.2061
+2026-04-05 21:30:05 | INFO     | evaluation.evaluator |   rouge2              : 0.0958
+2026-04-05 21:30:05 | INFO     | evaluation.evaluator |   rougeL              : 0.1726
+2026-04-05 21:30:05 | INFO     | evaluation.evaluator |   bertscore_f1        : 0.8344
+2026-04-05 21:30:05 | INFO     | root | ============================================================
+2026-04-05 21:30:05 | INFO     | root | PIPELINE COMPLETE
+2026-04-05 21:30:05 | INFO     | root | Final evaluation metrics: {'accuracy': 0.45, 'rouge1': 0.20613065135273087, 'rouge2': 0.09583002323939824, 'rougeL': 0.1726108280506031, 'bertscore_f1': 0.834408164024353}
+2026-04-05 21:30:05 | INFO     | root | Model saved to          : ./outputs/final_model
+2026-04-05 21:30:05 | INFO     | root | ============================================================
+2026-04-05 21:45:14 | INFO     | utils.utils | PyTorch version : 2.5.1+cu121
+2026-04-05 21:45:14 | INFO     | utils.utils | CUDA available  : True
+2026-04-05 21:45:14 | INFO     | utils.utils | CUDA version    : 12.1
+2026-04-05 21:45:14 | INFO     | utils.utils |   GPU 0: NVIDIA GeForce RTX 4050 Laptop GPU | VRAM: 6.4 GB
+2026-04-05 21:45:14 | INFO     | root | ============================================================
+2026-04-05 21:45:14 | INFO     | root | STAGE 1: Setup Complete
+2026-04-05 21:45:14 | INFO     | root | Config:
+  model: {'model_name': 'google/gemma-2b', 'tokenizer_name': 'google/gemma-2b', 'max_seq_length': 256, 'load_in_4bit': True, 'bnb_4bit_compute_dtype': 'bfloat16', 'bnb_4bit_quant_type': 'nf4', 'use_nested_quant': False}
+  lora: {'r': 16, 'lora_alpha': 32, 'target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'], 'lora_dropout': 0.05, 'bias': 'none', 'task_type': 'CAUSAL_LM'}
+  data: {'dataset_name': 'medmcqa', 'dataset_split_train': 'train', 'dataset_split_val': 'validation', 'max_train_samples': 50, 'max_val_samples': 20, 'train_test_split_ratio': 0.1, 'seed': 42, 'input_col': 'input_prompt', 'output_col': 'expected_output'}
+  training: {'output_dir': './outputs/gemma_medqa_lora', 'num_train_epochs': 1, 'per_device_train_batch_size': 1, 'per_device_eval_batch_size': 1, 'gradient_accumulation_steps': 8, 'learning_rate': 0.0002, 'weight_decay': 0.001, 'warmup_ratio': 0.03, 'lr_scheduler_type': 'cosine', 'logging_steps': 25, 'eval_steps': 100, 'save_steps': 100, 'save_total_limit': 2, 'fp16': False, 'bf16': True, 'max_grad_norm': 0.3, 'report_to': 'none', 'evaluation_strategy': 'steps', 'load_best_model_at_end': True, 'metric_for_best_model': 'eval_loss', 'greater_is_better': False}
+  log_dir: ./logs
+  checkpoint_dir: ./checkpoints
+  final_model_dir: ./outputs/final_model
+2026-04-05 21:45:14 | INFO     | root | ============================================================
+2026-04-05 21:45:14 | INFO     | __main__ | ============================================================
+2026-04-05 21:45:14 | INFO     | __main__ | STAGE 2: Data Loading & Preprocessing
+2026-04-05 21:45:14 | INFO     | __main__ | ============================================================
+2026-04-05 21:45:14 | INFO     | data.dataset | Loading dataset: medmcqa
+2026-04-05 21:45:14 | ERROR    | datasets.load | `trust_remote_code` is not supported anymore.
+Please check that the Hugging Face dataset 'medmcqa' isn't based on a loading script and remove `trust_remote_code`.
+If the dataset is based on a loading script, please ask the dataset author to remove it and convert it to a standard format like Parquet.
+2026-04-05 21:45:15 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:45:15 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:45:15 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/openlifescienceai/medmcqa/91c6572c454088bf71b679ad90aa8dffcd0d5868/README.md "HTTP/1.1 200 OK"
+2026-04-05 21:45:15 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:45:15 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 21:45:16 | INFO     | httpx | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/medmcqa/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 21:45:17 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:45:17 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 200 OK"
+2026-04-05 21:45:17 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:45:17 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-05 21:45:18 | INFO     | httpx | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=medmcqa "HTTP/1.1 404 Not Found"
+2026-04-05 21:45:18 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:45:18 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:45:18 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:45:19 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:45:19 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:45:19 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-04-05 21:45:19 | INFO     | data.dataset | Raw dataset: DatasetDict({
+    train: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 182822
+    })
+    test: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 6150
+    })
+    validation: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 4183
+    })
+})
+2026-04-05 21:45:19 | INFO     | data.dataset | Train: 50 samples | Val: 20 samples
+2026-04-05 21:45:19 | INFO     | __main__ | Train dataset columns : ['text']
+2026-04-05 21:45:19 | INFO     | __main__ | Sample training text  :
+You are a knowledgeable medical assistant. Answer the following multiple-choice question by selecting the correct option and providing a brief explanation.
+
+Question: Chronic urethral obstruction due to benign prismatic hyperplasia can lead to the following change in kidney parenchyma
+A) Hyperplasia
+B) Hyperophy
+C) Atrophy
+D) Dyplasia
+
+Answer: B) Hyperophy
+Explanation: Chronic urethral obstruction
+...
+2026-04-05 21:45:19 | INFO     | __main__ | ============================================================
+2026-04-05 21:45:19 | INFO     | __main__ | STAGE 3: Model Loading (QLoRA)
+2026-04-05 21:45:19 | INFO     | __main__ | ============================================================
+2026-04-05 21:45:19 | INFO     | models.model | Loading tokenizer: google/gemma-2b
+2026-04-05 21:45:20 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:45:20 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-05 21:45:20 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-05 21:45:21 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:45:22 | INFO     | models.model | Loading model: google/gemma-2b (4-bit QLoRA)
+2026-04-05 21:45:22 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:45:23 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:45:30 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/generation_config.json "HTTP/1.1 200 OK"
+2026-04-05 21:45:31 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-04-05 21:45:31 | INFO     | models.model | Injecting LoRA adapters | r=16 | alpha=32 | modules={'gate_proj', 'up_proj', 'k_proj', 'v_proj', 'o_proj', 'q_proj', 'down_proj'}
+2026-04-05 22:03:55 | INFO     | utils.utils | PyTorch version : 2.5.1+cu121
+2026-04-05 22:03:55 | INFO     | utils.utils | CUDA available  : True
+2026-04-05 22:03:55 | INFO     | utils.utils | CUDA version    : 12.1
+2026-04-05 22:03:55 | INFO     | utils.utils |   GPU 0: NVIDIA GeForce RTX 4050 Laptop GPU | VRAM: 6.4 GB
+2026-04-05 22:03:55 | INFO     | root | ============================================================
+2026-04-05 22:03:55 | INFO     | root | STAGE 1: Setup Complete
+2026-04-05 22:03:55 | INFO     | root | Config:
+  model: {'model_name': 'google/gemma-2b', 'tokenizer_name': 'google/gemma-2b', 'max_seq_length': 256, 'load_in_4bit': True, 'bnb_4bit_compute_dtype': 'bfloat16', 'bnb_4bit_quant_type': 'nf4', 'use_nested_quant': False}
+  lora: {'r': 16, 'lora_alpha': 32, 'target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'], 'lora_dropout': 0.05, 'bias': 'none', 'task_type': 'CAUSAL_LM'}
+  data: {'dataset_name': 'medmcqa', 'dataset_split_train': 'train', 'dataset_split_val': 'validation', 'max_train_samples': 50, 'max_val_samples': 20, 'train_test_split_ratio': 0.1, 'seed': 42, 'input_col': 'input_prompt', 'output_col': 'expected_output'}
+  training: {'output_dir': './outputs/gemma_medqa_lora', 'num_train_epochs': 1, 'per_device_train_batch_size': 2, 'per_device_eval_batch_size': 2, 'gradient_accumulation_steps': 4, 'learning_rate': 0.0002, 'weight_decay': 0.001, 'warmup_ratio': 0.03, 'lr_scheduler_type': 'cosine', 'logging_steps': 25, 'eval_steps': 100, 'save_steps': 100, 'save_total_limit': 2, 'fp16': False, 'bf16': True, 'max_grad_norm': 0.3, 'group_by_length': True, 'report_to': 'none', 'evaluation_strategy': 'steps', 'load_best_model_at_end': True, 'metric_for_best_model': 'eval_loss', 'greater_is_better': False}
+  log_dir: ./logs
+  checkpoint_dir: ./checkpoints
+  final_model_dir: ./outputs/final_model
+2026-04-05 22:03:55 | INFO     | root | ============================================================
+2026-04-05 22:03:55 | INFO     | __main__ | ============================================================
+2026-04-05 22:03:55 | INFO     | __main__ | STAGE 2: Data Loading & Preprocessing
+2026-04-05 22:03:55 | INFO     | __main__ | ============================================================
+2026-04-05 22:03:55 | INFO     | data.dataset | Loading dataset: medmcqa
+2026-04-05 22:03:56 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:03:56 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:03:56 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/openlifescienceai/medmcqa/91c6572c454088bf71b679ad90aa8dffcd0d5868/README.md "HTTP/1.1 200 OK"
+2026-04-05 22:03:57 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:03:57 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 22:03:58 | INFO     | httpx | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/medmcqa/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 22:03:59 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:04:00 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 200 OK"
+2026-04-05 22:04:00 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:04:00 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-05 22:04:01 | INFO     | httpx | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=medmcqa "HTTP/1.1 404 Not Found"
+2026-04-05 22:04:01 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:04:01 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:04:02 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:04:02 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:04:02 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:04:03 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-04-05 22:04:03 | INFO     | data.dataset | Raw dataset: DatasetDict({
+    train: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 182822
+    })
+    test: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 6150
+    })
+    validation: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 4183
+    })
+})
+2026-04-05 22:04:03 | INFO     | data.dataset | Train: 50 samples | Val: 20 samples
+2026-04-05 22:04:03 | INFO     | __main__ | Train dataset columns : ['text']
+2026-04-05 22:04:03 | INFO     | __main__ | Sample training text  :
+You are a knowledgeable medical assistant. Answer the following multiple-choice question by selecting the correct option and providing a brief explanation.
+
+Question: Chronic urethral obstruction due to benign prismatic hyperplasia can lead to the following change in kidney parenchyma
+A) Hyperplasia
+B) Hyperophy
+C) Atrophy
+D) Dyplasia
+
+Answer: B) Hyperophy
+Explanation: Chronic urethral obstruction
+...
+2026-04-05 22:04:03 | INFO     | __main__ | ============================================================
+2026-04-05 22:04:03 | INFO     | __main__ | STAGE 3: Model Loading (QLoRA)
+2026-04-05 22:04:03 | INFO     | __main__ | ============================================================
+2026-04-05 22:04:03 | INFO     | models.model | Loading tokenizer: google/gemma-2b
+2026-04-05 22:04:03 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:04:03 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-05 22:04:04 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-05 22:04:04 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:04:08 | INFO     | models.model | Loading model: google/gemma-2b (4-bit QLoRA)
+2026-04-05 22:04:08 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:04:09 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:04:17 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/generation_config.json "HTTP/1.1 200 OK"
+2026-04-05 22:04:17 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-04-05 22:04:18 | INFO     | models.model | Injecting LoRA adapters | r=16 | alpha=32 | modules={'q_proj', 'gate_proj', 'v_proj', 'o_proj', 'k_proj', 'up_proj', 'down_proj'}
+2026-04-05 22:04:19 | INFO     | models.model | Trainable parameters: 19611648 / 1534879744 (1.28%)
+2026-04-05 22:04:19 | INFO     | __main__ | ============================================================
+2026-04-05 22:04:19 | INFO     | __main__ | STAGE 4: Fine-Tuning
+2026-04-05 22:04:19 | INFO     | __main__ | ============================================================
+2026-04-05 22:12:50 | INFO     | utils.utils | PyTorch version : 2.5.1+cu121
+2026-04-05 22:12:50 | INFO     | utils.utils | CUDA available  : True
+2026-04-05 22:12:50 | INFO     | utils.utils | CUDA version    : 12.1
+2026-04-05 22:12:50 | INFO     | utils.utils |   GPU 0: NVIDIA GeForce RTX 4050 Laptop GPU | VRAM: 6.4 GB
+2026-04-05 22:12:50 | INFO     | root | ============================================================
+2026-04-05 22:12:50 | INFO     | root | STAGE 1: Setup Complete
+2026-04-05 22:12:50 | INFO     | root | Config:
+  model: {'model_name': 'google/gemma-2b', 'tokenizer_name': 'google/gemma-2b', 'max_seq_length': 256, 'load_in_4bit': True, 'bnb_4bit_compute_dtype': 'bfloat16', 'bnb_4bit_quant_type': 'nf4', 'use_nested_quant': False}
+  lora: {'r': 16, 'lora_alpha': 32, 'target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'], 'lora_dropout': 0.05, 'bias': 'none', 'task_type': 'CAUSAL_LM'}
+  data: {'dataset_name': 'medmcqa', 'dataset_split_train': 'train', 'dataset_split_val': 'validation', 'max_train_samples': 50, 'max_val_samples': 20, 'train_test_split_ratio': 0.1, 'seed': 42, 'input_col': 'input_prompt', 'output_col': 'expected_output'}
+  training: {'output_dir': './outputs/gemma_medqa_lora', 'num_train_epochs': 1, 'per_device_train_batch_size': 2, 'per_device_eval_batch_size': 2, 'gradient_accumulation_steps': 4, 'learning_rate': 0.0002, 'weight_decay': 0.001, 'warmup_ratio': 0.03, 'lr_scheduler_type': 'cosine', 'logging_steps': 25, 'eval_steps': 100, 'save_steps': 100, 'save_total_limit': 2, 'fp16': False, 'bf16': True, 'max_grad_norm': 0.3, 'report_to': 'none', 'evaluation_strategy': 'steps', 'load_best_model_at_end': True, 'metric_for_best_model': 'eval_loss', 'greater_is_better': False}
+  log_dir: ./logs
+  checkpoint_dir: ./checkpoints
+  final_model_dir: ./outputs/final_model
+2026-04-05 22:12:50 | INFO     | root | ============================================================
+2026-04-05 22:12:50 | INFO     | __main__ | ============================================================
+2026-04-05 22:12:50 | INFO     | __main__ | STAGE 2: Data Loading & Preprocessing
+2026-04-05 22:12:50 | INFO     | __main__ | ============================================================
+2026-04-05 22:12:50 | INFO     | data.dataset | Loading dataset: medmcqa
+2026-04-05 22:12:50 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:12:51 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:12:51 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/openlifescienceai/medmcqa/91c6572c454088bf71b679ad90aa8dffcd0d5868/README.md "HTTP/1.1 200 OK"
+2026-04-05 22:12:51 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:12:51 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 22:12:52 | INFO     | httpx | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/medmcqa/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 22:12:53 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:12:53 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 200 OK"
+2026-04-05 22:12:53 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:12:53 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-05 22:12:54 | INFO     | httpx | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=medmcqa "HTTP/1.1 404 Not Found"
+2026-04-05 22:12:54 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:12:54 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:12:54 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:12:55 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:12:55 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:12:55 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-04-05 22:12:55 | INFO     | data.dataset | Raw dataset: DatasetDict({
+    train: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 182822
+    })
+    test: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 6150
+    })
+    validation: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 4183
+    })
+})
+2026-04-05 22:12:55 | INFO     | data.dataset | Train: 50 samples | Val: 20 samples
+2026-04-05 22:12:55 | INFO     | __main__ | Train dataset columns : ['text']
+2026-04-05 22:12:55 | INFO     | __main__ | Sample training text  :
+You are a knowledgeable medical assistant. Answer the following multiple-choice question by selecting the correct option and providing a brief explanation.
+
+Question: Chronic urethral obstruction due to benign prismatic hyperplasia can lead to the following change in kidney parenchyma
+A) Hyperplasia
+B) Hyperophy
+C) Atrophy
+D) Dyplasia
+
+Answer: B) Hyperophy
+Explanation: Chronic urethral obstruction
+...
+2026-04-05 22:12:55 | INFO     | __main__ | ============================================================
+2026-04-05 22:12:55 | INFO     | __main__ | STAGE 3: Model Loading (QLoRA)
+2026-04-05 22:12:55 | INFO     | __main__ | ============================================================
+2026-04-05 22:12:55 | INFO     | models.model | Loading tokenizer: google/gemma-2b
+2026-04-05 22:12:56 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:12:56 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-05 22:12:56 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-05 22:12:56 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:12:58 | INFO     | models.model | Loading model: google/gemma-2b (4-bit QLoRA)
+2026-04-05 22:12:58 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:12:58 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:13:02 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/generation_config.json "HTTP/1.1 200 OK"
+2026-04-05 22:13:03 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-04-05 22:13:03 | INFO     | models.model | Injecting LoRA adapters | r=16 | alpha=32 | modules={'down_proj', 'gate_proj', 'o_proj', 'v_proj', 'q_proj', 'up_proj', 'k_proj'}
+2026-04-05 22:13:04 | INFO     | models.model | Trainable parameters: 19611648 / 1534879744 (1.28%)
+2026-04-05 22:13:04 | INFO     | __main__ | ============================================================
+2026-04-05 22:13:04 | INFO     | __main__ | STAGE 4: Fine-Tuning
+2026-04-05 22:13:04 | INFO     | __main__ | ============================================================
+2026-04-05 22:18:37 | INFO     | utils.utils | PyTorch version : 2.5.1+cu121
+2026-04-05 22:18:37 | INFO     | utils.utils | CUDA available  : True
+2026-04-05 22:18:37 | INFO     | utils.utils | CUDA version    : 12.1
+2026-04-05 22:18:37 | INFO     | utils.utils |   GPU 0: NVIDIA GeForce RTX 4050 Laptop GPU | VRAM: 6.4 GB
+2026-04-05 22:18:37 | INFO     | root | ============================================================
+2026-04-05 22:18:37 | INFO     | root | STAGE 1: Setup Complete
+2026-04-05 22:18:37 | INFO     | root | Config:
+  model: {'model_name': 'google/gemma-2b', 'tokenizer_name': 'google/gemma-2b', 'max_seq_length': 256, 'load_in_4bit': True, 'bnb_4bit_compute_dtype': 'bfloat16', 'bnb_4bit_quant_type': 'nf4', 'use_nested_quant': False}
+  lora: {'r': 16, 'lora_alpha': 32, 'target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'], 'lora_dropout': 0.05, 'bias': 'none', 'task_type': 'CAUSAL_LM'}
+  data: {'dataset_name': 'medmcqa', 'dataset_split_train': 'train', 'dataset_split_val': 'validation', 'max_train_samples': 50, 'max_val_samples': 20, 'train_test_split_ratio': 0.1, 'seed': 42, 'input_col': 'input_prompt', 'output_col': 'expected_output'}
+  training: {'output_dir': './outputs/gemma_medqa_lora', 'num_train_epochs': 1, 'per_device_train_batch_size': 2, 'per_device_eval_batch_size': 2, 'gradient_accumulation_steps': 4, 'learning_rate': 0.0002, 'weight_decay': 0.001, 'warmup_ratio': 0.03, 'lr_scheduler_type': 'cosine', 'logging_steps': 25, 'eval_steps': 100, 'save_steps': 100, 'save_total_limit': 2, 'fp16': False, 'bf16': True, 'max_grad_norm': 0.3, 'report_to': 'none', 'evaluation_strategy': 'steps', 'load_best_model_at_end': True, 'metric_for_best_model': 'eval_loss', 'greater_is_better': False}
+  log_dir: ./logs
+  checkpoint_dir: ./checkpoints
+  final_model_dir: ./outputs/final_model
+2026-04-05 22:18:37 | INFO     | root | ============================================================
+2026-04-05 22:18:37 | INFO     | __main__ | ============================================================
+2026-04-05 22:18:37 | INFO     | __main__ | STAGE 2: Data Loading & Preprocessing
+2026-04-05 22:18:37 | INFO     | __main__ | ============================================================
+2026-04-05 22:18:37 | INFO     | data.dataset | Loading dataset: medmcqa
+2026-04-05 22:18:38 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:18:38 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:18:38 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/openlifescienceai/medmcqa/91c6572c454088bf71b679ad90aa8dffcd0d5868/README.md "HTTP/1.1 200 OK"
+2026-04-05 22:18:38 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:18:39 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 22:18:40 | INFO     | httpx | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/medmcqa/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 22:18:40 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:18:40 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 200 OK"
+2026-04-05 22:18:40 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:18:41 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-05 22:18:41 | INFO     | httpx | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=medmcqa "HTTP/1.1 404 Not Found"
+2026-04-05 22:18:41 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:18:42 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:18:42 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:18:42 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:18:42 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:18:43 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-04-05 22:18:43 | INFO     | data.dataset | Raw dataset: DatasetDict({
+    train: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 182822
+    })
+    test: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 6150
+    })
+    validation: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 4183
+    })
+})
+2026-04-05 22:18:43 | INFO     | data.dataset | Train: 50 samples | Val: 20 samples
+2026-04-05 22:18:43 | INFO     | __main__ | Train dataset columns : ['text']
+2026-04-05 22:18:43 | INFO     | __main__ | Sample training text  :
+You are a knowledgeable medical assistant. Answer the following multiple-choice question by selecting the correct option and providing a brief explanation.
+
+Question: Chronic urethral obstruction due to benign prismatic hyperplasia can lead to the following change in kidney parenchyma
+A) Hyperplasia
+B) Hyperophy
+C) Atrophy
+D) Dyplasia
+
+Answer: B) Hyperophy
+Explanation: Chronic urethral obstruction
+...
+2026-04-05 22:18:43 | INFO     | __main__ | ============================================================
+2026-04-05 22:18:43 | INFO     | __main__ | STAGE 3: Model Loading (QLoRA)
+2026-04-05 22:18:43 | INFO     | __main__ | ============================================================
+2026-04-05 22:18:43 | INFO     | models.model | Loading tokenizer: google/gemma-2b
+2026-04-05 22:18:43 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:18:43 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-05 22:18:44 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-05 22:18:44 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:18:45 | INFO     | models.model | Loading model: google/gemma-2b (4-bit QLoRA)
+2026-04-05 22:18:46 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:18:46 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:18:50 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/generation_config.json "HTTP/1.1 200 OK"
+2026-04-05 22:18:50 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-04-05 22:18:51 | INFO     | models.model | Injecting LoRA adapters | r=16 | alpha=32 | modules={'v_proj', 'down_proj', 'gate_proj', 'q_proj', 'o_proj', 'k_proj', 'up_proj'}
+2026-04-05 22:18:51 | INFO     | models.model | Trainable parameters: 19611648 / 1534879744 (1.28%)
+2026-04-05 22:18:51 | INFO     | __main__ | ============================================================
+2026-04-05 22:18:51 | INFO     | __main__ | STAGE 4: Fine-Tuning
+2026-04-05 22:18:51 | INFO     | __main__ | ============================================================
+2026-04-05 22:18:57 | INFO     | training.trainer | ============================================================
+2026-04-05 22:18:57 | INFO     | training.trainer | Starting fine-tuning...
+2026-04-05 22:18:57 | INFO     | training.trainer | Output dir : ./outputs/gemma_medqa_lora
+2026-04-05 22:18:57 | INFO     | training.trainer | Epochs     : 1
+2026-04-05 22:18:57 | INFO     | training.trainer | Batch size : 2 (x4 grad accum)
+2026-04-05 22:18:57 | INFO     | training.trainer | ============================================================
+2026-04-05 22:25:39 | INFO     | utils.utils | PyTorch version : 2.5.1+cu121
+2026-04-05 22:25:39 | INFO     | utils.utils | CUDA available  : True
+2026-04-05 22:25:39 | INFO     | utils.utils | CUDA version    : 12.1
+2026-04-05 22:25:39 | INFO     | utils.utils |   GPU 0: NVIDIA GeForce RTX 4050 Laptop GPU | VRAM: 6.4 GB
+2026-04-05 22:25:39 | INFO     | root | ============================================================
+2026-04-05 22:25:39 | INFO     | root | STAGE 1: Setup Complete
+2026-04-05 22:25:39 | INFO     | root | Config:
+  model: {'model_name': 'google/gemma-2b', 'tokenizer_name': 'google/gemma-2b', 'max_seq_length': 256, 'load_in_4bit': True, 'bnb_4bit_compute_dtype': 'bfloat16', 'bnb_4bit_quant_type': 'nf4', 'use_nested_quant': False}
+  lora: {'r': 16, 'lora_alpha': 32, 'target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'], 'lora_dropout': 0.05, 'bias': 'none', 'task_type': 'CAUSAL_LM'}
+  data: {'dataset_name': 'medmcqa', 'dataset_split_train': 'train', 'dataset_split_val': 'validation', 'max_train_samples': 50, 'max_val_samples': 20, 'train_test_split_ratio': 0.1, 'seed': 42, 'input_col': 'input_prompt', 'output_col': 'expected_output'}
+  training: {'output_dir': './outputs/gemma_medqa_lora', 'num_train_epochs': 1, 'per_device_train_batch_size': 2, 'per_device_eval_batch_size': 2, 'gradient_accumulation_steps': 4, 'learning_rate': 0.0002, 'weight_decay': 0.001, 'warmup_ratio': 0.03, 'lr_scheduler_type': 'cosine', 'logging_steps': 25, 'eval_steps': 100, 'save_steps': 100, 'save_total_limit': 2, 'fp16': False, 'bf16': True, 'max_grad_norm': 0.3, 'report_to': 'none', 'evaluation_strategy': 'steps', 'load_best_model_at_end': True, 'metric_for_best_model': 'eval_loss', 'greater_is_better': False}
+  log_dir: ./logs
+  checkpoint_dir: ./checkpoints
+  final_model_dir: ./outputs/final_model
+2026-04-05 22:25:39 | INFO     | root | ============================================================
+2026-04-05 22:25:39 | INFO     | __main__ | ============================================================
+2026-04-05 22:25:39 | INFO     | __main__ | STAGE 2: Data Loading & Preprocessing
+2026-04-05 22:25:39 | INFO     | __main__ | ============================================================
+2026-04-05 22:25:39 | INFO     | data.dataset | Loading dataset: medmcqa
+2026-04-05 22:25:40 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:25:40 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:25:40 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/openlifescienceai/medmcqa/91c6572c454088bf71b679ad90aa8dffcd0d5868/README.md "HTTP/1.1 200 OK"
+2026-04-05 22:25:40 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:25:40 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 22:25:41 | INFO     | httpx | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/medmcqa/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 22:25:42 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:25:42 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 200 OK"
+2026-04-05 22:25:42 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:25:42 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-05 22:25:43 | INFO     | httpx | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=medmcqa "HTTP/1.1 404 Not Found"
+2026-04-05 22:25:43 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:25:43 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:25:43 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:25:44 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:25:44 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:25:44 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-04-05 22:25:44 | INFO     | data.dataset | Raw dataset: DatasetDict({
+    train: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 182822
+    })
+    test: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 6150
+    })
+    validation: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 4183
+    })
+})
+2026-04-05 22:25:44 | INFO     | data.dataset | Train: 50 samples | Val: 20 samples
+2026-04-05 22:25:44 | INFO     | __main__ | Train dataset columns : ['text']
+2026-04-05 22:25:44 | INFO     | __main__ | Sample training text  :
+You are a knowledgeable medical assistant. Answer the following multiple-choice question by selecting the correct option and providing a brief explanation.
+
+Question: Chronic urethral obstruction due to benign prismatic hyperplasia can lead to the following change in kidney parenchyma
+A) Hyperplasia
+B) Hyperophy
+C) Atrophy
+D) Dyplasia
+
+Answer: B) Hyperophy
+Explanation: Chronic urethral obstruction
+...
+2026-04-05 22:25:44 | INFO     | __main__ | ============================================================
+2026-04-05 22:25:44 | INFO     | __main__ | STAGE 3: Model Loading (QLoRA)
+2026-04-05 22:25:44 | INFO     | __main__ | ============================================================
+2026-04-05 22:25:44 | INFO     | models.model | Loading tokenizer: google/gemma-2b
+2026-04-05 22:25:45 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:25:45 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-05 22:25:45 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-05 22:25:45 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:25:47 | INFO     | models.model | Loading model: google/gemma-2b (4-bit QLoRA)
+2026-04-05 22:25:47 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:25:47 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:26:24 | INFO     | utils.utils | PyTorch version : 2.5.1+cu121
+2026-04-05 22:26:24 | INFO     | utils.utils | CUDA available  : True
+2026-04-05 22:26:24 | INFO     | utils.utils | CUDA version    : 12.1
+2026-04-05 22:26:24 | INFO     | utils.utils |   GPU 0: NVIDIA GeForce RTX 4050 Laptop GPU | VRAM: 6.4 GB
+2026-04-05 22:26:24 | INFO     | root | ============================================================
+2026-04-05 22:26:24 | INFO     | root | STAGE 1: Setup Complete
+2026-04-05 22:26:24 | INFO     | root | Config:
+  model: {'model_name': 'google/gemma-2b', 'tokenizer_name': 'google/gemma-2b', 'max_seq_length': 256, 'load_in_4bit': True, 'bnb_4bit_compute_dtype': 'bfloat16', 'bnb_4bit_quant_type': 'nf4', 'use_nested_quant': False}
+  lora: {'r': 16, 'lora_alpha': 32, 'target_modules': ['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'], 'lora_dropout': 0.05, 'bias': 'none', 'task_type': 'CAUSAL_LM'}
+  data: {'dataset_name': 'medmcqa', 'dataset_split_train': 'train', 'dataset_split_val': 'validation', 'max_train_samples': 50, 'max_val_samples': 20, 'train_test_split_ratio': 0.1, 'seed': 42, 'input_col': 'input_prompt', 'output_col': 'expected_output'}
+  training: {'output_dir': './outputs/gemma_medqa_lora', 'num_train_epochs': 1, 'per_device_train_batch_size': 2, 'per_device_eval_batch_size': 2, 'gradient_accumulation_steps': 4, 'learning_rate': 0.0002, 'weight_decay': 0.001, 'warmup_ratio': 0.03, 'lr_scheduler_type': 'cosine', 'logging_steps': 25, 'eval_steps': 100, 'save_steps': 100, 'save_total_limit': 2, 'fp16': False, 'bf16': True, 'max_grad_norm': 0.3, 'report_to': 'none', 'evaluation_strategy': 'steps', 'load_best_model_at_end': True, 'metric_for_best_model': 'eval_loss', 'greater_is_better': False}
+  log_dir: ./logs
+  checkpoint_dir: ./checkpoints
+  final_model_dir: ./outputs/final_model
+2026-04-05 22:26:24 | INFO     | root | ============================================================
+2026-04-05 22:26:24 | INFO     | __main__ | ============================================================
+2026-04-05 22:26:24 | INFO     | __main__ | STAGE 2: Data Loading & Preprocessing
+2026-04-05 22:26:24 | INFO     | __main__ | ============================================================
+2026-04-05 22:26:24 | INFO     | data.dataset | Loading dataset: medmcqa
+2026-04-05 22:26:24 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:26:25 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:26:25 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/openlifescienceai/medmcqa/91c6572c454088bf71b679ad90aa8dffcd0d5868/README.md "HTTP/1.1 200 OK"
+2026-04-05 22:26:25 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:26:25 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 22:26:26 | INFO     | httpx | HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/medmcqa/medmcqa.py "HTTP/1.1 404 Not Found"
+2026-04-05 22:26:26 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:26:27 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/revision/91c6572c454088bf71b679ad90aa8dffcd0d5868 "HTTP/1.1 200 OK"
+2026-04-05 22:26:27 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:26:27 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/.huggingface.yaml "HTTP/1.1 404 Not Found"
+2026-04-05 22:26:27 | INFO     | httpx | HTTP Request: GET https://datasets-server.huggingface.co/info?dataset=medmcqa "HTTP/1.1 404 Not Found"
+2026-04-05 22:26:28 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:26:28 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868/data?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:26:28 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:26:28 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/datasets/openlifescienceai/medmcqa/tree/91c6572c454088bf71b679ad90aa8dffcd0d5868?recursive=false&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:26:29 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:26:29 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/datasets/openlifescienceai/medmcqa/resolve/91c6572c454088bf71b679ad90aa8dffcd0d5868/dataset_infos.json "HTTP/1.1 404 Not Found"
+2026-04-05 22:26:29 | INFO     | data.dataset | Raw dataset: DatasetDict({
+    train: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 182822
+    })
+    test: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 6150
+    })
+    validation: Dataset({
+        features: ['id', 'question', 'opa', 'opb', 'opc', 'opd', 'cop', 'choice_type', 'exp', 'subject_name', 'topic_name'],
+        num_rows: 4183
+    })
+})
+2026-04-05 22:26:29 | INFO     | data.dataset | Train: 50 samples | Val: 20 samples
+2026-04-05 22:26:29 | INFO     | __main__ | Train dataset columns : ['text']
+2026-04-05 22:26:29 | INFO     | __main__ | Sample training text  :
+You are a knowledgeable medical assistant. Answer the following multiple-choice question by selecting the correct option and providing a brief explanation.
+
+Question: Chronic urethral obstruction due to benign prismatic hyperplasia can lead to the following change in kidney parenchyma
+A) Hyperplasia
+B) Hyperophy
+C) Atrophy
+D) Dyplasia
+
+Answer: B) Hyperophy
+Explanation: Chronic urethral obstruction
+...
+2026-04-05 22:26:29 | INFO     | __main__ | ============================================================
+2026-04-05 22:26:29 | INFO     | __main__ | STAGE 3: Model Loading (QLoRA)
+2026-04-05 22:26:29 | INFO     | __main__ | ============================================================
+2026-04-05 22:26:29 | INFO     | models.model | Loading tokenizer: google/gemma-2b
+2026-04-05 22:26:29 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:26:30 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-05 22:26:30 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-05 22:26:30 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/google/gemma-2b/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:26:32 | INFO     | models.model | Loading model: google/gemma-2b (4-bit QLoRA)
+2026-04-05 22:26:32 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:26:32 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:26:36 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/generation_config.json "HTTP/1.1 200 OK"
+2026-04-05 22:26:36 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-04-05 22:26:37 | INFO     | models.model | Injecting LoRA adapters | r=16 | alpha=32 | modules={'up_proj', 'k_proj', 'down_proj', 'gate_proj', 'v_proj', 'q_proj', 'o_proj'}
+2026-04-05 22:26:37 | INFO     | models.model | Trainable parameters: 19611648 / 1534879744 (1.28%)
+2026-04-05 22:26:37 | INFO     | __main__ | ============================================================
+2026-04-05 22:26:37 | INFO     | __main__ | STAGE 4: Fine-Tuning
+2026-04-05 22:26:37 | INFO     | __main__ | ============================================================
+2026-04-05 22:26:43 | INFO     | training.trainer | ============================================================
+2026-04-05 22:26:43 | INFO     | training.trainer | Starting fine-tuning...
+2026-04-05 22:26:43 | INFO     | training.trainer | Output dir : ./outputs/gemma_medqa_lora
+2026-04-05 22:26:43 | INFO     | training.trainer | Epochs     : 1
+2026-04-05 22:26:43 | INFO     | training.trainer | Batch size : 2 (x4 grad accum)
+2026-04-05 22:26:43 | INFO     | training.trainer | ============================================================
+2026-04-05 22:27:21 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:27:21 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:27:22 | INFO     | training.trainer | Training complete.
+2026-04-05 22:27:22 | INFO     | training.trainer |   Total steps     : 7
+2026-04-05 22:27:22 | INFO     | training.trainer |   Training loss   : 2.8985
+2026-04-05 22:27:22 | INFO     | training.trainer |   train_runtime                 : 38.6239
+2026-04-05 22:27:22 | INFO     | training.trainer |   train_samples_per_second      : 1.295
+2026-04-05 22:27:22 | INFO     | training.trainer |   train_steps_per_second        : 0.181
+2026-04-05 22:27:22 | INFO     | training.trainer |   total_flos                    : 125205587779584.0
+2026-04-05 22:27:22 | INFO     | training.trainer |   train_loss                    : 2.8985069819859097
+2026-04-05 22:27:22 | INFO     | training.trainer | Saving model adapter to: ./outputs/final_model
+2026-04-05 22:27:22 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:27:22 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/google/gemma-2b/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:27:23 | INFO     | training.trainer | Model saved successfully.
+2026-04-05 22:27:23 | INFO     | training.trainer | Running evaluation on validation set...
+2026-04-05 22:27:32 | INFO     | training.trainer | Eval metrics: {'eval_loss': 3.080824851989746, 'eval_runtime': 9.0168, 'eval_samples_per_second': 2.218, 'eval_steps_per_second': 1.109}
+2026-04-05 22:27:32 | INFO     | root | Training evaluation metrics: {'eval_loss': 3.080824851989746, 'eval_runtime': 9.0168, 'eval_samples_per_second': 2.218, 'eval_steps_per_second': 1.109}
+2026-04-05 22:27:32 | INFO     | __main__ | ============================================================
+2026-04-05 22:27:32 | INFO     | __main__ | STAGE 5: Evaluation
+2026-04-05 22:27:32 | INFO     | __main__ | ============================================================
+2026-04-05 22:27:32 | INFO     | evaluation.evaluator | Generating predictions for 20 samples...
+2026-04-05 22:34:15 | INFO     | evaluation.evaluator | Accuracy: 0.4500 (9/20)
+2026-04-05 22:34:15 | INFO     | absl | Using default tokenizer.
+2026-04-05 22:34:15 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:34:16 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-05 22:34:16 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/roberta-large/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:34:16 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/FacebookAI/roberta-large/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-05 22:34:17 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/roberta-large/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 22:34:17 | INFO     | httpx | HTTP Request: GET https://huggingface.co/api/models/FacebookAI/roberta-large/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 22:34:17 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:34:18 | INFO     | httpx | HTTP Request: HEAD https://huggingface.co/roberta-large/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-04-05 22:34:21 | INFO     | evaluation.evaluator | Evaluation Results:
+2026-04-05 22:34:21 | INFO     | evaluation.evaluator |   accuracy            : 0.4500
+2026-04-05 22:34:21 | INFO     | evaluation.evaluator |   rouge1              : 0.2141
+2026-04-05 22:34:21 | INFO     | evaluation.evaluator |   rouge2              : 0.0973
+2026-04-05 22:34:21 | INFO     | evaluation.evaluator |   rougeL              : 0.1786
+2026-04-05 22:34:21 | INFO     | evaluation.evaluator |   bertscore_f1        : 0.8363
+2026-04-05 22:34:21 | INFO     | root | ============================================================
+2026-04-05 22:34:21 | INFO     | root | PIPELINE COMPLETE
+2026-04-05 22:34:21 | INFO     | root | Final evaluation metrics: {'accuracy': 0.45, 'rouge1': 0.21414404936112158, 'rouge2': 0.09730328182559307, 'rougeL': 0.17857838585605562, 'bertscore_f1': 0.8362705111503601}
+2026-04-05 22:34:21 | INFO     | root | Model saved to          : ./outputs/final_model
+2026-04-05 22:34:21 | INFO     | root | ============================================================
