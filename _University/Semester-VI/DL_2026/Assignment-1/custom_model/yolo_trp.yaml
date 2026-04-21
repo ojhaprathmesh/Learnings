@@ -1,0 +1,72 @@
+# YOLO-TRP Custom Architecture
+# ============================
+# YOLOv8n + CBAM attention modules + TransformerNeck + Focal Loss
+#
+# Channel values are HARDCODED to YOLOv8-nano scale
+# (width_multiple=0.25, depth_multiple=0.33). No 'scales' section needed.
+#
+# Layer index reference
+# ---------------------
+# Layer  0 : Conv   16ch  P1/2
+# Layer  1 : Conv   32ch  P2/4
+# Layer  2 : C2f    32ch  (1 repeat)
+# Layer  3 : CBAM   32ch
+# Layer  4 : Conv   64ch  P3/8
+# Layer  5 : C2f    64ch  (2 repeats)
+# Layer  6 : CBAM   64ch  [P3 save - referenced by head concat]
+# Layer  7 : Conv  128ch  P4/16
+# Layer  8 : C2f   128ch  (2 repeats)
+# Layer  9 : CBAM  128ch  [P4 save - referenced by head concat]
+# Layer 10 : Conv  256ch  P5/32
+# Layer 11 : C2f   256ch  (1 repeat)
+# Layer 12 : SPPF  256ch  k=5
+# Layer 13 : TransformerNeck 256ch  [P5 save - referenced by head concat]
+# --- head ---
+# Layer 14 : Upsample 2x -> 256ch
+# Layer 15 : Concat [14, 9]  -> 384ch
+# Layer 16 : C2f   128ch (2 repeats) [referenced by layer 21 concat]
+# Layer 17 : Upsample 2x -> 128ch
+# Layer 18 : Concat [17, 6] -> 192ch
+# Layer 19 : C2f    64ch (2 repeats) [Detect P3/8]
+# Layer 20 : Conv   64ch  stride-2
+# Layer 21 : Concat [20, 16] -> 192ch
+# Layer 22 : C2f   128ch (2 repeats) [Detect P4/16]
+# Layer 23 : Conv  128ch  stride-2
+# Layer 24 : Concat [23, 13] -> 384ch
+# Layer 25 : C2f   256ch (2 repeats) [Detect P5/32]
+# Layer 26 : Detect [19, 22, 25]
+
+# Number of classes  (CADI-AI: abiotic, insect, disease)
+nc: 3
+
+backbone:
+  # [from, n_repeats, module, args]
+  - [-1, 1, Conv,            [16, 3, 2]]       # 0  P1/2   3->16
+  - [-1, 1, Conv,            [32, 3, 2]]       # 1  P2/4  16->32
+  - [-1, 1, C2f,             [32, True]]       # 2         32 (1 repeat)
+  - [-1, 1, CBAM,            [32]]             # 3  CBAM  32ch
+  - [-1, 1, Conv,            [64, 3, 2]]       # 4  P3/8  32->64
+  - [-1, 2, C2f,             [64, True]]       # 5         64 (2 repeats)
+  - [-1, 1, CBAM,            [64]]             # 6  CBAM  64ch  [P3 save]
+  - [-1, 1, Conv,            [128, 3, 2]]      # 7  P4/16 64->128
+  - [-1, 2, C2f,             [128, True]]      # 8         128 (2 repeats)
+  - [-1, 1, CBAM,            [128]]            # 9  CBAM 128ch  [P4 save]
+  - [-1, 1, Conv,            [256, 3, 2]]      # 10 P5/32 128->256
+  - [-1, 1, C2f,             [256, True]]      # 11        256 (1 repeat)
+  - [-1, 1, SPPF,            [256, 5]]         # 12 SPPF  256ch
+  - [-1, 1, TransformerNeck, [256]]            # 13 Transformer 256ch [P5 save]
+
+head:
+  - [-1,         1, nn.Upsample, [None, 2, "nearest"]] # 14   256ch up2x
+  - [[-1, 9],    1, Concat,      [1]]                  # 15   256+128=384ch
+  - [-1,         2, C2f,         [128]]                # 16   128ch
+  - [-1,         1, nn.Upsample, [None, 2, "nearest"]] # 17   128ch up2x
+  - [[-1, 6],    1, Concat,      [1]]                  # 18   128+64=192ch
+  - [-1,         2, C2f,         [64]]                 # 19   64ch  (P3 detect)
+  - [-1,         1, Conv,        [64, 3, 2]]           # 20   64ch  down2x
+  - [[-1, 16],   1, Concat,      [1]]                  # 21   64+128=192ch
+  - [-1,         2, C2f,         [128]]                # 22   128ch (P4 detect)
+  - [-1,         1, Conv,        [128, 3, 2]]          # 23   128ch down2x
+  - [[-1, 13],   1, Concat,      [1]]                  # 24   128+256=384ch
+  - [-1,         2, C2f,         [256]]                # 25   256ch (P5 detect)
+  - [[19, 22, 25], 1, Detect,    [nc]]                 # 26   Detect P3/P4/P5

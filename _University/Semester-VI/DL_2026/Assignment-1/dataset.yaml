@@ -1,0 +1,17 @@
+# CADI-AI Dataset Configuration for Ultralytics YOLO
+# Plant stress detection: abiotic / insect / disease
+
+path: d:/Coding/_Learnings/_University/Semester-VI/DL_2026/Assignment-1
+
+train: train/train/images
+val:   val/val/images
+test:  test/test/images
+
+# Number of classes
+nc: 3
+
+# Class names  (indices must match those in .txt label files)
+names:
+  0: abiotic    # abiotic stress (nutrient deficiency, drought, etc.)
+  1: insect     # insect damage
+  2: disease    # fungal / bacterial / viral disease
