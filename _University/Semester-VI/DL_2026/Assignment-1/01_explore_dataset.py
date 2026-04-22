@@ -23,16 +23,26 @@ import cv2
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import seaborn as sns
+import yaml
 
 # -----------------------------------------------------------------------
 ROOT = Path(__file__).parent
-DATA = ROOT
+DATA_YAML = ROOT / "dataset.yaml"
 
-SPLITS = {
-    "train": DATA / "train" / "train",
-    "val":   DATA / "val"   / "val",
-    "test":  DATA / "test"  / "test",
-}
+
+def _resolve_splits_from_yaml(dataset_yaml: Path) -> dict[str, Path]:
+    cfg = yaml.safe_load(dataset_yaml.read_text(encoding="utf-8"))
+    base = Path(cfg.get("path", ROOT))
+    splits: dict[str, Path] = {}
+    for split in ("train", "val", "test"):
+        split_images = cfg.get(split)
+        if split_images:
+            img_dir = base / str(split_images)
+            splits[split] = img_dir.parent  # contains images/ and labels/
+    return splits
+
+
+SPLITS = _resolve_splits_from_yaml(DATA_YAML) if DATA_YAML.exists() else {}
 CLASS_NAMES = {0: "abiotic", 1: "insect", 2: "disease"}
 COLORS      = {0: "#e05c5c", 1: "#5c8fe0", 2: "#5cbf7e"}
 

@@ -2,9 +2,17 @@
 00_sanitize_labels.py
 =====================
 Sanitize YOLO label files by clamping bbox values into [0, 1].
+
+This script resolves label directories from `dataset.yaml` so it works both on:
+- the original repo layout (e.g. train/train/images)
+- a Drive layout (e.g. train/images)
 """
 
+from __future__ import annotations
+
 from pathlib import Path
+
+import yaml
 
 
 ROOT = Path(__file__).parent
@@ -47,6 +55,20 @@ def _sanitize_file(path: Path) -> tuple[int, int]:
     return changed, invalid
 
 
+def _resolve_label_dirs_from_yaml(dataset_yaml: Path) -> dict[str, Path]:
+    cfg = yaml.safe_load(dataset_yaml.read_text(encoding="utf-8"))
+    base = Path(cfg.get("path", ROOT))
+    out: dict[str, Path] = {}
+    for split in SPLITS:
+        split_images = cfg.get(split)
+        if not split_images:
+            continue
+        img_dir = base / str(split_images)
+        lbl_dir = img_dir.parent / "labels"
+        out[split] = lbl_dir
+    return out
+
+
 def main() -> None:
     print("=" * 60)
     print("  YOLO Label Sanitizer")
@@ -54,9 +76,13 @@ def main() -> None:
     total_files = 0
     total_changed = 0
     total_invalid = 0
+
+    dataset_yaml = ROOT / "dataset.yaml"
+    label_dirs = _resolve_label_dirs_from_yaml(dataset_yaml) if dataset_yaml.exists() else {}
+
     for split in SPLITS:
-        label_dir = ROOT / split / split / "labels"
-        if not label_dir.exists():
+        label_dir = label_dirs.get(split)
+        if not label_dir or not label_dir.exists():
             continue
         for path in sorted(label_dir.glob("*.txt")):
             total_files += 1

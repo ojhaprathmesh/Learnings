@@ -35,6 +35,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 from ultralytics import YOLO
+import yaml
 
 ROOT = Path(__file__).parent
 RUNS_DIR = Path(os.getenv("YOLO_RUNS_DIR", str(ROOT / "runs" / "detect")))
@@ -150,9 +151,14 @@ def compute_iou_distribution(weights_path: Path, model_name: str, n_images: int 
     import cv2
     from pathlib import Path as P
 
-    model     = YOLO(str(weights_path))
-    test_imgs = list((ROOT / "test" / "test" / "images").iterdir())[:n_images]
-    test_lbls = ROOT / "test" / "test" / "labels"
+    model = YOLO(str(weights_path))
+
+    # Resolve test directories from dataset.yaml so it works on Drive layouts too.
+    cfg = yaml.safe_load((ROOT / "dataset.yaml").read_text(encoding="utf-8"))
+    base = Path(cfg.get("path", ROOT))
+    test_images = base / str(cfg.get("test", "test/images"))
+    test_imgs = list(test_images.iterdir())[:n_images]
+    test_lbls = test_images.parent / "labels"
 
     ious = []
     for img_path in test_imgs:
