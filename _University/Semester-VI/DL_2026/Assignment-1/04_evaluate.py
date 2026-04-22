@@ -27,6 +27,7 @@ Usage
 """
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -36,12 +37,14 @@ import matplotlib.ticker as mticker
 from ultralytics import YOLO
 
 ROOT = Path(__file__).parent
+RUNS_DIR = Path(os.getenv("YOLO_RUNS_DIR", str(ROOT / "runs" / "detect")))
+RESULTS_DIR = Path(os.getenv("YOLO_RESULTS_DIR", str(ROOT / "results")))
 
-BASELINE_WEIGHTS = ROOT / "runs" / "detect" / "baseline"  / "weights" / "best.pt"
-CUSTOM_WEIGHTS   = ROOT / "runs" / "detect" / "yolo_trp"  / "weights" / "best.pt"
+BASELINE_WEIGHTS = RUNS_DIR / "baseline" / "weights" / "best.pt"
+CUSTOM_WEIGHTS   = RUNS_DIR / "yolo_trp" / "weights" / "best.pt"
 DATA_YAML        = str(ROOT / "dataset.yaml")
 
-OUT_DIR = ROOT / "results" / "evaluation"
+OUT_DIR = RESULTS_DIR / "evaluation"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 CLASS_NAMES = ["abiotic", "insect", "disease"]

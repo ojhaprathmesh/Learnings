@@ -18,6 +18,7 @@ Usage
 """
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -28,11 +29,13 @@ import matplotlib.gridspec as gridspec
 import matplotlib.colors as mcolors
 
 ROOT    = Path(__file__).parent
-EVAL_DIR = ROOT / "results" / "evaluation"
-OUT_DIR  = ROOT / "results" / "comparison"
+RUNS_DIR = Path(os.getenv("YOLO_RUNS_DIR", str(ROOT / "runs" / "detect")))
+RESULTS_DIR = Path(os.getenv("YOLO_RESULTS_DIR", str(ROOT / "results")))
+EVAL_DIR = RESULTS_DIR / "evaluation"
+OUT_DIR  = RESULTS_DIR / "comparison"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-RUN_DIR  = ROOT / "runs" / "detect"
+RUN_DIR  = RUNS_DIR
 CLASS_NAMES = ["Abiotic", "Insect", "Disease"]
 
 MODEL_CFG = {

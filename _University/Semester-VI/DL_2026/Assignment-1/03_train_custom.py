@@ -38,7 +38,8 @@ _ul_ops.Profile.time = lambda self: time.perf_counter()
 from custom_model.yolo_trp_trainer import YOLOTRPTrainer
 import torch
 
-RUN_DIR = ROOT / "runs" / "detect" / "yolo_trp"
+RUNS_DIR = Path(os.getenv("YOLO_RUNS_DIR", str(ROOT / "runs" / "detect")))
+RUN_DIR = RUNS_DIR / "yolo_trp"
 LAST_CKPT = RUN_DIR / "weights" / "last.pt"
 
 # -----------------------------------------------------------------------
@@ -72,7 +73,7 @@ OVERRIDES = dict(
     flipud    = 0.1,
     fliplr    = 0.5,
     # Logging / saving
-    project    = str(ROOT / "runs" / "detect"),
+    project    = str(RUNS_DIR),
     name       = "yolo_trp",
     save        = True,
     save_period = 1,                    # Save checkpoint every epoch for safer resume

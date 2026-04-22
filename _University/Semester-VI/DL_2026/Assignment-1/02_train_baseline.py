@@ -26,7 +26,8 @@ from ultralytics import YOLO
 import torch
 
 ROOT = Path(__file__).parent
-RUN_DIR = ROOT / "runs" / "detect" / "baseline"
+RUNS_DIR = Path(os.getenv("YOLO_RUNS_DIR", str(ROOT / "runs" / "detect")))
+RUN_DIR = RUNS_DIR / "baseline"
 LAST_CKPT = RUN_DIR / "weights" / "last.pt"
 
 # -----------------------------------------------------------------------
@@ -58,7 +59,7 @@ CFG = dict(
     flipud     = 0.1,
     fliplr     = 0.5,
     # Logging / saving
-    project    = str(ROOT / "runs" / "detect"),
+    project    = str(RUNS_DIR),
     name       = "baseline",
     save        = True,
     save_period = 1,                    # Save checkpoint every epoch for safer resume
